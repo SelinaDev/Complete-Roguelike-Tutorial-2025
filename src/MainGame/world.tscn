@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ykdag72d0du"]
+
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="1_4qxsp"]
+[ext_resource type="Script" uid="uid://dxfdbacqoyqon" path="res://temp/player.gd" id="2_ht4jc"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("1_4qxsp")
+centered = false
+region_enabled = true
+region_rect = Rect2(432, 0, 16, 16)
+script = ExtResource("2_ht4jc")
