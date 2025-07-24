@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=13 format=3 uid="uid://t6mjo4m3b26f"]
+
+[ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_udmkr"]
+[ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_10qb1"]
+[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="2_rpol6"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="3_w87t1"]
+[ext_resource type="Script" uid="uid://qqxap082sv7r" path="res://src/MainGame/Entity/Components/Actor/player_actor_component.gd" id="4_ewc45"]
+[ext_resource type="Script" uid="uid://3tjf7f4d52to" path="res://src/MainGame/Entity/Components/player_component.gd" id="5_ph7id"]
+[ext_resource type="Script" uid="uid://dh7sa5gcxc5ax" path="res://src/MainGame/Entity/Components/camera_component.gd" id="6_ph7id"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewc45"]
+atlas = ExtResource("3_w87t1")
+region = Rect2(432, 0, 16, 16)
+
+[sub_resource type="Resource" id="Resource_ph7id"]
+script = ExtResource("2_rpol6")
+texture = SubResource("AtlasTexture_ewc45")
+render_order = 3
+color = Color(1, 1, 1, 1)
+visible = true
+metadata/_custom_type_script = "uid://baots4c6rxh58"
+
+[sub_resource type="Resource" id="Resource_nbuq5"]
+script = ExtResource("4_ewc45")
+metadata/_custom_type_script = "uid://qqxap082sv7r"
+
+[sub_resource type="Resource" id="Resource_7s8mx"]
+script = ExtResource("5_ph7id")
+metadata/_custom_type_script = "uid://3tjf7f4d52to"
+
+[sub_resource type="Resource" id="Resource_l84a4"]
+script = ExtResource("6_ph7id")
+metadata/_custom_type_script = "uid://dh7sa5gcxc5ax"
+
+[resource]
+script = ExtResource("2_10qb1")
+name = "Player"
+initial_components = Array[ExtResource("1_udmkr")]([SubResource("Resource_ph7id"), SubResource("Resource_nbuq5"), SubResource("Resource_7s8mx"), SubResource("Resource_l84a4")])
+_components = Dictionary[int, ExtResource("1_udmkr")]({})
+metadata/_custom_type_script = "uid://c4d0asmlvnv50"

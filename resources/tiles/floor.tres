@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TileTemplate" load_steps=4 format=3 uid="uid://cufilifqykitr"]
+
+[ext_resource type="Script" uid="uid://c2tn85e833n4m" path="res://src/MainGame/Map/tile_template.gd" id="1_ocpmn"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="2_qo6ha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78fni"]
+atlas = ExtResource("2_qo6ha")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_ocpmn")
+name = "Floor"
+texture = SubResource("AtlasTexture_78fni")
+blocks_movement = false
+blocks_sight = false
+light_color = Color(0.501961, 0.247059, 0, 1)
+metadata/_custom_type_script = "uid://c2tn85e833n4m"
