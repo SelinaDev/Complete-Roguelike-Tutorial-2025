@@ -52,6 +52,24 @@ func get_entities_with_components(component_types: Array[Component.Type]) -> Arr
 	)
 
 
+func get_entities_at_position(position: Vector2i) -> Array[Entity]:
+	return entities.filter(
+		func(e: Entity) -> bool:
+			var position_component: PositionComponent = e.get_component(Component.Type.Position)
+			if not position_component:
+				return false
+			return position_component.position == position
+	)
+
+
+func get_blocking_entity_at_position(position: Vector2i) -> Entity:
+	var blocking_entities := get_entities_at_position(position).filter(
+		func(e: Entity) -> bool:
+			return e.has_component(Component.Type.MovementBlocker)
+	)
+	return null if blocking_entities.is_empty() else blocking_entities.front()
+
+
 func set_tile(tile_position: Vector2i, tile_template: TileTemplate) -> Tile:
 	if not Rect2i(Vector2i.ZERO, size).has_point(tile_position):
 		return null

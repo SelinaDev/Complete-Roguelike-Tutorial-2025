@@ -4,9 +4,9 @@ extends Action
 var offset: Vector2i
 
 
-func _init(entity: Entity, dx: int, dy: int) -> void:
+func _init(entity: Entity, offset) -> void:
 	super._init(entity)
-	offset = Vector2i(dx, dy)
+	self.offset = offset
 
 
 func get_destination() -> Vector2i:
@@ -16,3 +16,7 @@ func get_destination() -> Vector2i:
 		push_error("Tried to get destination for entity '%s' without Position Component" % _performing_entity.name)
 	destination += position_component.position
 	return destination
+
+
+func get_blocking_entity_at_destination() -> Entity:
+	return _performing_entity.map_data.get_blocking_entity_at_position(get_destination())

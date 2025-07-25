@@ -1,8 +1,7 @@
 class_name DungeonGenerator
 extends RefCounted
 
-const WALL = preload("res://resources/tiles/wall.tres")
-const FLOOR = preload("res://resources/tiles/floor.tres")
+const RESOURCE_COLLECTION = preload("res://resources/ResourceCollection.tres")
 
 var _settings: DungeonSettings
 var _map_data: MapData
@@ -19,7 +18,7 @@ func generate_dungeon(player: Entity) -> MapData:
 	_map_data.size = Vector2i(_settings.map_width, _settings.map_height)
 	for x: int in _settings.map_width:
 		for y: int in _settings.map_height:
-			_map_data.set_tile(Vector2i(x, y), WALL)
+			_map_data.set_tile(Vector2i(x, y), RESOURCE_COLLECTION.tiles["wall"])
 	
 	var rooms: Array[Rect2i] = []
 	
@@ -41,6 +40,7 @@ func generate_dungeon(player: Entity) -> MapData:
 			_map_data.spawn_entity_at(player, new_room.get_center())
 		else:
 			_tunnel_between(rooms.back().get_center(), new_room.get_center())
+			_place_entities(new_room)
 		
 		rooms.append(new_room)
 	
@@ -50,7 +50,7 @@ func generate_dungeon(player: Entity) -> MapData:
 
 
 func _carve_tile(x: int, y: int) -> void:
-	_map_data.set_tile(Vector2i(x, y), FLOOR)
+	_map_data.set_tile(Vector2i(x, y), RESOURCE_COLLECTION.tiles["floor"])
 
 
 func _carve_room(room: Rect2i) -> void:
@@ -80,3 +80,26 @@ func _tunnel_between(start: Vector2i, end: Vector2i) -> void:
 	else:
 		_tunnel_vertical(start.x, start.y, end.y)
 		_tunnel_horizontal(end.y, start.x, end.x)
+
+
+func _place_entities(room: Rect2i) -> void:
+	var num_monsters: int = _rng.randi_range(0, _settings.max_monsters_per_room)
+	
+	for _i in num_monsters:
+		var x: int = _rng.randi_range(room.position.x + 1, room.end.x - 1)
+		var y: int = _rng.randi_range(room.position.y + 1, room.end.y - 1)
+		var new_entity_position := Vector2i(x, y)
+		
+		var can_place: bool = _map_data.entities.all(func(e: Entity) -> bool:
+			var position_component: PositionComponent = e.get_component(Component.Type.Position)
+			if not position_component:
+				return true
+			return position_component.position != new_entity_position
+		)
+		if can_place:
+			var new_entity: Entity
+			if _rng.randf() < 0.8:
+				new_entity = RESOURCE_COLLECTION.entities["orc"]
+			else:
+				new_entity = RESOURCE_COLLECTION.entities["troll"]
+			_map_data.spawn_entity_at(new_entity.reify(), new_entity_position)

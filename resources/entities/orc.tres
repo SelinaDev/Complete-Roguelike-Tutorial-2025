@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=8 format=3 uid="uid://dj0vl7850kr1v"]
+
+[ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_r8xfv"]
+[ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_c2foe"]
+[ext_resource type="Resource" uid="uid://bdydjpc2ycp73" path="res://resources/entities/base_enemy.tres" id="2_qfcpp"]
+[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="3_ehoqn"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="4_0x1og"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32lbv"]
+atlas = ExtResource("4_0x1og")
+region = Rect2(400, 32, 16, 16)
+
+[sub_resource type="Resource" id="Resource_kq4tg"]
+script = ExtResource("3_ehoqn")
+texture = SubResource("AtlasTexture_32lbv")
+render_order = 3
+color = Color(0, 1, 0, 1)
+visible = true
+metadata/_custom_type_script = "uid://baots4c6rxh58"
+
+[resource]
+script = ExtResource("2_c2foe")
+name = "Orc"
+initial_components = Array[ExtResource("1_r8xfv")]([SubResource("Resource_kq4tg")])
+base_entity = ExtResource("2_qfcpp")
+_components = Dictionary[int, ExtResource("1_r8xfv")]({})
+metadata/_custom_type_script = "uid://c4d0asmlvnv50"

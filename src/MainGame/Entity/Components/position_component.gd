@@ -18,7 +18,11 @@ func process_message_precalculate(message: Message) -> void:
 		"move":
 			var destination: Vector2i = message.data.get("destination", position)
 			var destination_tile: Tile = _parent_entity.map_data.tiles.get(destination)
-			if destination_tile == null or destination_tile.blocks_movement:
+			var destination_has_blocking_entity = _parent_entity.map_data.get_entities_at_position(destination).any(
+				func(e: Entity) -> bool:
+					return e.has_component(Component.Type.MovementBlocker)
+			)
+			if destination_tile == null or destination_tile.blocks_movement or destination_has_blocking_entity:
 				destination = position
 			message.data["destination"] = destination
 

@@ -9,3 +9,6 @@ extends Resource
 @export var max_rooms: int = 30
 @export var room_min_size: int = 6
 @export var room_max_size: int = 10
+
+@export_category("Monsters RNG")
+@export var max_monsters_per_room = 2

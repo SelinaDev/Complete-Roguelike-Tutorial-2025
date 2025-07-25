@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ResourceCollection" load_steps=10 format=3 uid="uid://dhuel5llscocm"]
+
+[ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="1_0bm4k"]
+[ext_resource type="Resource" uid="uid://bdydjpc2ycp73" path="res://resources/entities/base_enemy.tres" id="2_86e2q"]
+[ext_resource type="Resource" uid="uid://dj0vl7850kr1v" path="res://resources/entities/orc.tres" id="3_ndubb"]
+[ext_resource type="Resource" uid="uid://t6mjo4m3b26f" path="res://resources/entities/player.tres" id="4_bae76"]
+[ext_resource type="Resource" uid="uid://xrxa2m7y5ren" path="res://resources/entities/troll.tres" id="5_360ra"]
+[ext_resource type="Script" uid="uid://67tc7f61ubqw" path="res://src/MainGame/ResourceCollection.gd" id="6_tbaj6"]
+[ext_resource type="Script" uid="uid://c2tn85e833n4m" path="res://src/MainGame/Map/tile_template.gd" id="7_mtrrw"]
+[ext_resource type="Resource" uid="uid://cufilifqykitr" path="res://resources/tiles/floor.tres" id="8_warjq"]
+[ext_resource type="Resource" uid="uid://tgfnn0dsowxm" path="res://resources/tiles/wall.tres" id="9_e0bmq"]
+
+[resource]
+script = ExtResource("6_tbaj6")
+entities = Dictionary[String, ExtResource("1_0bm4k")]({
+"base_enemy": ExtResource("2_86e2q"),
+"orc": ExtResource("3_ndubb"),
+"player": ExtResource("4_bae76"),
+"troll": ExtResource("5_360ra")
+})
+tiles = Dictionary[String, ExtResource("7_mtrrw")]({
+"floor": ExtResource("8_warjq"),
+"wall": ExtResource("9_e0bmq")
+})

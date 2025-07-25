@@ -7,6 +7,7 @@ enum Type {
 	Camera,
 	Drawable,
 	FOV,
+	MovementBlocker,
 	Player,
 	Position,
 }

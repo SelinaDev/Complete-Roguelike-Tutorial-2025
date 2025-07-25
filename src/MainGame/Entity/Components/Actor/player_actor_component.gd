@@ -30,6 +30,17 @@ func _on_event(event: InputEvent) -> void:
 		move_offset += Vector2i.UP
 	elif event.is_action("move_down"):
 		move_offset += Vector2i.DOWN
+	elif event.is_action("move_up_left"):
+		move_offset += Vector2i.UP + Vector2i.LEFT
+	elif event.is_action("move_up_right"):
+		move_offset += Vector2i.UP + Vector2i.RIGHT
+	elif event.is_action("move_down_left"):
+		move_offset += Vector2i.DOWN + Vector2i.LEFT
+	elif event.is_action("move_down_right"):
+		move_offset += Vector2i.DOWN + Vector2i.RIGHT
 	
 	if move_offset != Vector2i.ZERO:
-		_queued_action = MovementAction.new(_parent_entity, move_offset.x, move_offset.y)
+		_queued_action = BumpAction.new(_parent_entity, move_offset)
+	
+	if event.is_action("wait"):
+		_queued_action = WaitAction.new(_parent_entity)
