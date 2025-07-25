@@ -13,4 +13,5 @@ name = "Wall"
 texture = SubResource("AtlasTexture_j8r7w")
 blocks_movement = true
 blocks_sight = true
+light_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://c2tn85e833n4m"

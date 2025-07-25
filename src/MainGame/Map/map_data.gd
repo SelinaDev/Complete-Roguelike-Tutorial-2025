@@ -49,6 +49,14 @@ func get_entities_with_components(component_types: Array[Component.Type]) -> Arr
 	)
 
 
+func set_tile(tile_position: Vector2i, tile_template: TileTemplate) -> Tile:
+	if not Rect2i(Vector2i.ZERO, size).has_point(tile_position):
+		return null
+	var tile := Tile.new(tile_template, tile_position)
+	tiles[tile_position] = tile
+	return tile
+
+
 func world_to_grid(world_position: Vector2) -> Vector2i:
 	return Vector2i(world_position / _TILE_SIZE)
 

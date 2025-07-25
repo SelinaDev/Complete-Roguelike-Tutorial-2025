@@ -8,25 +8,13 @@ signal map_data_set(map_data)
 
 const PLAYER = preload("res://resources/entities/player.tres")
 
-
 var _map_data: MapData:
 	set = set_map_data
 
 
 func _ready() -> void:
-	var FLOOR: TileTemplate = preload("res://resources/tiles/floor.tres")
-	var WALL: TileTemplate = preload("res://resources/tiles/wall.tres")
-	var map_data := MapData.new()
-	for x: int in 80:
-		for y: int in 50:
-			var tile_position := Vector2i(x, y)
-			var tile := Tile.new(FLOOR, tile_position)
-			map_data.tiles[tile_position] = tile
-	for y: int in range(5, 10):
-		var tile_position := Vector2i(5, y)
-		map_data.tiles[tile_position] = Tile.new(WALL, tile_position)
-	set_map_data(map_data)
-	_map_data.spawn_entity_at(PLAYER.reify(), Vector2i(2, 2))
+	var dungeon_generator := DungeonGenerator.new()
+	_map_data = dungeon_generator.generate_dungeon(PLAYER.reify())
 
 
 func set_map_data(new_map_data: MapData) -> void:

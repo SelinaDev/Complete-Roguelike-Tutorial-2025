@@ -39,7 +39,7 @@ func get_position() -> Vector2:
 
 
 func get_zoom() -> int:
-	return 1 if _stack.is_empty() else _stack.back().zoom
+	return 2 if _stack.is_empty() else _stack.back().zoom
 
 
 func _on_top_state_position_changed(new_grid_position: Vector2i) -> void:

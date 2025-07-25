@@ -10,7 +10,7 @@ var grid_position: Vector2i:
 	set(value):
 		grid_position = value
 		grid_position_changed.emit(grid_position)
-var zoom: int = 1:
+var zoom: int = 2:
 	set(value):
 		zoom = clampi(value, 1, MAX_ZOOM)
 		zoom_changed.emit(zoom)
