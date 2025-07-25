@@ -6,6 +6,7 @@ enum Type {
 	Actor,
 	Camera,
 	Drawable,
+	FOV,
 	Player,
 	Position,
 }

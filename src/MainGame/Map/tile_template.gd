@@ -6,3 +6,4 @@ extends Resource
 @export var blocks_movement: bool = true
 @export var blocks_sight: bool = true
 @export var light_color: Color = Color.WHITE
+@export var dark_color: Color = Color.DIM_GRAY

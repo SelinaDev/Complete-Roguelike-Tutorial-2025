@@ -33,9 +33,15 @@ func process_message_execute(message: Message) -> void:
 	match message.type:
 		"position_update":
 			if message.data.has("position"):
-				_sprite.position = _parent_entity.map_data.grid_to_world(message.data["position"])
+				var position: Vector2i = message.data["position"]
+				_sprite.position = _parent_entity.map_data.grid_to_world(position)
+				_sprite.visible = _parent_entity.map_data.is_in_fov(position)
 			else:
 				_sprite.queue_free()
+		"fov_update":
+			var fov: Dictionary[Vector2i, bool] = message.data.get("fov", {})
+			var position: Vector2i = message.data.get("position", Vector2i(-1, -1))
+			_sprite.visible = fov.get(position, false)
 
 
 func get_component_type() -> Type:

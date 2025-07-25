@@ -13,6 +13,8 @@ extends Component
 
 func process_message_precalculate(message: Message) -> void:
 	match message.type:
+		"recalculate_fov", "fov_update":
+			message.data["position"] = position
 		"move":
 			var destination: Vector2i = message.data.get("destination", position)
 			var destination_tile: Tile = _parent_entity.map_data.tiles.get(destination)

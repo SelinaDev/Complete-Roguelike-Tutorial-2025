@@ -44,6 +44,8 @@ func generate_dungeon(player: Entity) -> MapData:
 		
 		rooms.append(new_room)
 	
+	player.process_message(Message.new("recalculate_fov"))
+	
 	return _map_data
 
 
