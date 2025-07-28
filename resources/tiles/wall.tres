@@ -14,4 +14,5 @@ texture = SubResource("AtlasTexture_j8r7w")
 blocks_movement = null
 blocks_sight = null
 light_color = null
+dark_color = Color(0.411765, 0.411765, 0.411765, 1)
 metadata/_custom_type_script = "uid://c2tn85e833n4m"

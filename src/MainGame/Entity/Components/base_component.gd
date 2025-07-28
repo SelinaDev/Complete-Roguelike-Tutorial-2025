@@ -6,6 +6,8 @@ enum Type {
 	Actor,
 	Camera,
 	Drawable,
+	Durability,
+	Fighter,
 	FOV,
 	MovementBlocker,
 	Player,

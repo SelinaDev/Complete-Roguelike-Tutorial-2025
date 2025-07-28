@@ -8,9 +8,18 @@ enum RenderOrder {
 	ACTOR
 }
 
-@export var texture: AtlasTexture
-@export var render_order: RenderOrder = RenderOrder.ITEM
-@export var color: Color = Color.WHITE
+@export var texture: AtlasTexture:
+	set(value):
+		texture = value
+		_sprite.texture = texture
+@export var render_order: RenderOrder = RenderOrder.ITEM:
+	set(value):
+		render_order = value
+		_sprite.z_index = render_order
+@export var color: Color = Color.WHITE:
+	set(value):
+		color = value
+		_sprite.modulate = color
 @export_storage var visible: bool = true
 
 var _sprite: Sprite2D = null:
@@ -42,6 +51,13 @@ func process_message_execute(message: Message) -> void:
 			var fov: Dictionary[Vector2i, bool] = message.data.get("fov", {})
 			var position: Vector2i = message.data.get("position", Vector2i(-1, -1))
 			_sprite.visible = fov.get(position, false)
+		"visual_update":
+			if message.data.has("texture"):
+				texture = message.data["texture"]
+			if message.data.has("color"):
+				color = message.data["color"]
+			if message.data.has("render_order"):
+				render_order = message.data["render_order"]
 
 
 func get_component_type() -> Type:

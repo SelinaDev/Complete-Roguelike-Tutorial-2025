@@ -3,14 +3,16 @@ extends Resource
 
 signal entity_sprite_spawned(entity_sprite)
 
+const BLOCKING_ENTITY_PATHFIND_WEIGHT = 5
 var _TILE_SIZE: Vector2 = ProjectSettings.get_setting("global/tile_size")
 
 @export_storage var entities: Array[Entity]
 @export_storage var tiles: Dictionary[Vector2i, Tile]
 @export_storage var size: Vector2i
+@export_storage var player_entity: Entity
 
 var _fov: Dictionary[Vector2i, bool] = {}
-
+var pathfinder: AStarGrid2D
 
 func spawn_entity_at(entity: Entity, position: Vector2i) -> void:
 	entity.place_at(position, self)
@@ -90,6 +92,28 @@ func set_fov(new_fov: Dictionary[Vector2i, bool]) -> void:
 
 func is_in_fov(position: Vector2i) -> bool:
 	return _fov.get(position, false)
+
+
+func setup_pathfinder() -> void:
+	pathfinder = AStarGrid2D.new()
+	pathfinder.region = Rect2i(Vector2i.ZERO, size)
+	pathfinder.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ALWAYS
+	pathfinder.default_compute_heuristic = AStarGrid2D.HEURISTIC_CHEBYSHEV
+	pathfinder.default_estimate_heuristic = AStarGrid2D.HEURISTIC_CHEBYSHEV
+	pathfinder.update()
+	for tile_position: Vector2i in tiles:
+		var tile: Tile = tiles[tile_position]
+		pathfinder.set_point_solid(tile_position, tile.blocks_movement)
+	for entity: Entity in get_entities_with_components([Component.Type.Position, Component.Type.MovementBlocker]):
+		var entity_position: Vector2i = (entity.get_component(Component.Type.Position) as PositionComponent).position
+		pathfinder.set_point_weight_scale(entity_position, BLOCKING_ENTITY_PATHFIND_WEIGHT)
+
+
+func pathfinder_set_point(point: Vector2i, blocked: bool) -> void:
+	if not pathfinder:
+		return
+	var weight := BLOCKING_ENTITY_PATHFIND_WEIGHT if blocked else 1
+	pathfinder.set_point_weight_scale(point, weight)
 
 
 func world_to_grid(world_position: Vector2) -> Vector2i:

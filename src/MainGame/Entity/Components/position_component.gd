@@ -13,7 +13,7 @@ extends Component
 
 func process_message_precalculate(message: Message) -> void:
 	match message.type:
-		"recalculate_fov", "fov_update":
+		"recalculate_fov", "fov_update", "pathfinder_update":
 			message.data["position"] = position
 		"move":
 			var destination: Vector2i = message.data.get("destination", position)
@@ -37,10 +37,16 @@ func process_message_execute(message: Message) -> void:
 			_parent_entity.remove_component(type)
 
 
-# implements Manhattan distance
+# implements Chebyshev distance
 func distance_to(other: Vector2i) -> int:
 	var diff: Vector2i = (other - position).abs()
-	return diff.x + diff.y
+	return maxi(diff.x, diff.y)
+
+
+static func get_entity_position(entity: Entity) -> Vector2i:
+	var position_component: PositionComponent = entity.get_component(Type.Position)
+	assert(position_component != null)
+	return position_component.position
 
 
 func get_component_type() -> Type:

@@ -10,5 +10,11 @@ func get_action() -> Action:
 	return next_action
 
 
+func process_message_execute(message: Message) -> void:
+	match message.type:
+		"died":
+			_parent_entity.remove_component(type)
+
+
 func get_component_type() -> Type:
 	return Type.Actor

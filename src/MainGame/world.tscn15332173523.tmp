@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ykdag72d0du"]
+
+[ext_resource type="Script" uid="uid://cufmw36mbc3sf" path="res://src/MainGame/turn_queue.gd" id="1_ht4jc"]
+[ext_resource type="Script" uid="uid://ni6fdo6qhbpa" path="res://src/MainGame/Map/map.gd" id="3_amhqt"]
+[ext_resource type="Script" uid="uid://da2jq4b6erks" path="res://src/MainGame/game_camera.gd" id="3_gs8ee"]
+
+[node name="World" type="Node2D"]
+
+[node name="TurnQueue" type="Node" parent="."]
+script = ExtResource("1_ht4jc")
+
+[node name="GameCamera" type="Camera2D" parent="."]
+offset = Vector2(8, 8)
+script = ExtResource("3_gs8ee")
+
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("3_amhqt")
+
+[node name="Tiles" type="Node2D" parent="Map"]
+
+[node name="Entities" type="Node2D" parent="Map"]
+
+[connection signal="map_data_set" from="Map" to="TurnQueue" method="start"]

@@ -6,5 +6,14 @@ func perform() -> bool:
 	if not target or target == _performing_entity:
 		return false
 	
-	print("%s hits %s" % [_performing_entity.name, target.name])
+	var prepare_hit_message := Message.new("prepare_hit").with_data({"target": target})
+	_performing_entity.process_message(prepare_hit_message)
+	var damage := prepare_hit_message.get_calculation("damage").get_result()
+	
+	var execute_hit_message := Message.new("take_damage").with_data({
+		"source": _performing_entity
+	})
+	execute_hit_message.get_calculation("damage").base_value = damage
+	target.process_message(execute_hit_message)
+	
 	return true

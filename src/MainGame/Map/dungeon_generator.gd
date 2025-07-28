@@ -15,6 +15,7 @@ func _init(settings: DungeonSettings = DungeonSettings.new()) -> void:
 func generate_dungeon(player: Entity) -> MapData:
 	_rng.randomize()
 	_map_data = MapData.new()
+	_map_data.player_entity = player
 	_map_data.size = Vector2i(_settings.map_width, _settings.map_height)
 	for x: int in _settings.map_width:
 		for y: int in _settings.map_height:
@@ -45,6 +46,8 @@ func generate_dungeon(player: Entity) -> MapData:
 		rooms.append(new_room)
 	
 	player.process_message(Message.new("recalculate_fov"))
+	
+	_map_data.setup_pathfinder()
 	
 	return _map_data
 

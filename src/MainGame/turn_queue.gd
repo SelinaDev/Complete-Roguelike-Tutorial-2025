@@ -23,7 +23,7 @@ func stop() -> void:
 	set_process(false)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _i >= _queue.size():
 		_rebuild_queue()
 	while _i < _queue.size():
