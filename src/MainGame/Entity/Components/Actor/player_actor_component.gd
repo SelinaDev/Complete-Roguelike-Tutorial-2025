@@ -18,6 +18,11 @@ func _on_event(event: InputEvent) -> void:
 		_parent_entity.process_message(Message.new("zoom_in"))
 	if event.is_action_pressed("zoom_out"):
 		_parent_entity.process_message(Message.new("zoom_out"))
+		
+	if event.is_action_pressed("look"):
+		var position := PositionComponent.get_entity_position(_parent_entity)
+		var reticle_config := ReticleConfig.new(_parent_entity.map_data, position).with_info(ReticleConfig.Info.Look)
+		SignalBus.reticle_requested.emit(reticle_config)
 	
 	
 	var move_offset := Vector2i.ZERO

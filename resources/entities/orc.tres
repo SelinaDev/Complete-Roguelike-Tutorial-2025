@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://baots4c6rxh58"
 [resource]
 script = ExtResource("2_c2foe")
 name = "Orc"
+is_proper_name = false
 initial_components = Array[ExtResource("1_r8xfv")]([SubResource("Resource_kq4tg")])
 base_entity = ExtResource("2_qfcpp")
 _components = Dictionary[int, ExtResource("1_r8xfv")]({})

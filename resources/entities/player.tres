@@ -65,6 +65,7 @@ metadata/_custom_type_script = "uid://dyweau1wmjl33"
 [resource]
 script = ExtResource("2_10qb1")
 name = "Player"
+is_proper_name = false
 initial_components = Array[ExtResource("1_udmkr")]([SubResource("Resource_ph7id"), SubResource("Resource_nbuq5"), SubResource("Resource_7s8mx"), SubResource("Resource_l84a4"), SubResource("Resource_ksu5n"), SubResource("Resource_ewad8"), SubResource("Resource_b28q8"), SubResource("Resource_gid4h")])
 _components = Dictionary[int, ExtResource("1_udmkr")]({})
 metadata/_custom_type_script = "uid://c4d0asmlvnv50"

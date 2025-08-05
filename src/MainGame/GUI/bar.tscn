@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cva3qdduauv60"]
+
+[ext_resource type="Script" uid="uid://ccfo43f0ygsjr" path="res://src/MainGame/GUI/bar.gd" id="1_ccb6p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i07p"]
+bg_color = Color(0.501961, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5oc3u"]
+bg_color = Color(0, 0.501961, 0, 1)
+
+[node name="Bar" type="MarginContainer"]
+script = ExtResource("1_ccb6p")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_4i07p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5oc3u")
+step = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "HP: 15/15"
+horizontal_alignment = 1

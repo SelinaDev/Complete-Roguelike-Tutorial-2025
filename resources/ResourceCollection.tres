@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://dj0vl7850kr1v" path="res://resources/entities/orc.tres" id="3_ndubb"]
 [ext_resource type="Resource" uid="uid://t6mjo4m3b26f" path="res://resources/entities/player.tres" id="4_bae76"]
 [ext_resource type="Resource" uid="uid://xrxa2m7y5ren" path="res://resources/entities/troll.tres" id="5_360ra"]
-[ext_resource type="Script" uid="uid://67tc7f61ubqw" path="res://src/MainGame/ResourceCollection.gd" id="6_tbaj6"]
+[ext_resource type="Script" uid="uid://67tc7f61ubqw" path="res://src/MainGame/resource_collection.gd" id="6_tbaj6"]
 [ext_resource type="Script" uid="uid://c2tn85e833n4m" path="res://src/MainGame/Map/tile_template.gd" id="7_mtrrw"]
 [ext_resource type="Resource" uid="uid://cufilifqykitr" path="res://resources/tiles/floor.tres" id="8_warjq"]
 [ext_resource type="Resource" uid="uid://tgfnn0dsowxm" path="res://resources/tiles/wall.tres" id="9_e0bmq"]

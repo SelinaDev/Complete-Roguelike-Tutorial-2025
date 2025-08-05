@@ -16,6 +16,11 @@ var zoom: int = 2:
 		zoom_changed.emit(zoom)
 
 
+func activate() -> void:
+	grid_position_changed.emit(grid_position)
+	zoom_changed.emit(zoom)
+
+
 func derive() -> CameraState:
 	var derived_state := CameraState.new()
 	derived_state.grid_position = grid_position

@@ -18,6 +18,7 @@ func get_new_state() -> CameraState:
 		top_state.grid_position_changed.disconnect(_on_top_state_position_changed)
 		top_state.zoom_changed.disconnect(_on_top_state_zoom_changed)
 	
+	_stack.append(new_state)
 	new_state.grid_position_changed.connect(_on_top_state_position_changed)
 	new_state.zoom_changed.connect(_on_top_state_zoom_changed)
 	
@@ -29,6 +30,12 @@ func pop_state() -> void:
 	if top_state:
 		top_state.grid_position_changed.disconnect(_on_top_state_position_changed)
 		top_state.zoom_changed.disconnect(_on_top_state_zoom_changed)
+	if not _stack.is_empty():
+		var new_top_state: CameraState = _stack.back()
+		new_top_state.grid_position_changed.connect(_on_top_state_position_changed)
+		new_top_state.zoom_changed.connect(_on_top_state_zoom_changed)
+		_stack.back().activate()
+		
 
 
 func get_position() -> Vector2:
