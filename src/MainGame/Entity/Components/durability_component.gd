@@ -33,6 +33,12 @@ func set_hp(new_hp: int) -> void:
 		_parent_entity.process_message(Message.new("die"))
 
 
+func process_message_precalculate(message: Message) -> void:
+	match message.type:
+		"take_damage":
+			message.get_calculation("damage").terms.append(-1 * defense)
+
+
 func process_message_execute(message: Message) -> void:
 	match message.type:
 		"take_damage":
