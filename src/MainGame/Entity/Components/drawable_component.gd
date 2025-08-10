@@ -40,6 +40,9 @@ func get_sprite() -> Sprite2D:
 
 func process_message_execute(message: Message) -> void:
 	match message.type:
+		"exit_map":
+			_sprite.queue_free()
+			_sprite = null
 		"position_update":
 			if message.data.has("position"):
 				var position: Vector2i = message.data["position"]

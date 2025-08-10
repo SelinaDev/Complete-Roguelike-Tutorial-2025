@@ -1,7 +1,24 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bhx63o0ahxgyw"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bhx63o0ahxgyw"]
 
 [ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="1_7ct1h"]
 [ext_resource type="FontFile" uid="uid://t8v6yegnlnax" path="res://assets/fontPack/Fonts/Kenney Pixel.ttf" id="2_886mr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ct1h"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886mr"]
+draw_center = false
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b751m"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_b751m"]
 color = Color(1, 1, 1, 1)
@@ -20,5 +37,9 @@ region_rect = Rect2(768, 336, 16, 16)
 
 [resource]
 default_font = ExtResource("2_886mr")
+Button/styles/focus = SubResource("StyleBoxFlat_7ct1h")
+Button/styles/hover = SubResource("StyleBoxFlat_886mr")
+Button/styles/normal = SubResource("StyleBoxEmpty_b751m")
+Button/styles/pressed = SubResource("StyleBoxFlat_7ct1h")
 HSeparator/styles/separator = SubResource("StyleBoxLine_b751m")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_owntx")

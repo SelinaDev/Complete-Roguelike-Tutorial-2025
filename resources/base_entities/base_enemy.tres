@@ -35,12 +35,12 @@ metadata/_custom_type_script = "uid://br688f36nlduj"
 [sub_resource type="Resource" id="Resource_30wdv"]
 script = ExtResource("5_gic80")
 max_hp = 10
-hp = null
-defense = null
+hp = 1
+defense = 0
 death_texture = ExtResource("7_swx5b")
-death_color = null
+death_color = Color(0.545098, 0, 0, 1)
 death_render_order = 1
-death_removes_movement_blocker = null
+death_removes_movement_blocker = true
 metadata/_custom_type_script = "uid://b6mnki0ftt2gl"
 
 [sub_resource type="Resource" id="Resource_pgl6n"]

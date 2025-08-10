@@ -11,4 +11,7 @@ extends Resource
 @export var room_max_size: int = 10
 
 @export_category("Monsters RNG")
-@export var max_monsters_per_room = 2
+@export var max_monsters_per_room = 3
+
+@export_category("Items RNG")
+@export var max_items_per_room = 2

@@ -1,6 +1,7 @@
 class_name PlayerActorComponent
 extends ActorComponent
 
+const GAME_MENU = preload("res://src/MainGame/GUI/game_menu.tscn")
 
 func _enter_entity() -> void:
 	InputStack.register_input_callback(_on_event)
@@ -23,7 +24,6 @@ func _on_event(event: InputEvent) -> void:
 		var position := PositionComponent.get_entity_position(_parent_entity)
 		var reticle_config := ReticleConfig.new(_parent_entity.map_data, position).with_info(ReticleConfig.Info.Look)
 		SignalBus.reticle_requested.emit(reticle_config)
-	
 	
 	var move_offset := Vector2i.ZERO
 	
@@ -49,3 +49,39 @@ func _on_event(event: InputEvent) -> void:
 	
 	if event.is_action("wait"):
 		_queued_action = WaitAction.new(_parent_entity)
+	
+	if event.is_action("pickup"):
+		_queued_action = PickupAction.new(_parent_entity)
+	
+	if event.is_action("drop"):
+		var item: Entity = await _get_item("select an item to drop")
+		if item:
+			_queued_action = DropAction.new(_parent_entity, item)
+	
+	if event.is_action("inventory"):
+		_handle_inventory()
+
+
+func _handle_inventory() -> void:
+	var item: Entity = await _get_item("select item to use")
+	if not item:
+		return
+	var use_target := UsableComponent.get_use_target(item)
+	if not use_target:
+		return
+	var targets: Array[Entity] = await use_target.get_targets(_parent_entity)
+	if targets.is_empty():
+		return
+	_queued_action = UseAction.new(_parent_entity, item, targets)
+
+
+func _get_item(prompt: String = "") -> Entity:
+	var inventory: InventoryComponent = _parent_entity.get_component(Component.Type.Inventory)
+	var item_names: Array = inventory.items.map(func(e: Entity) -> String: return e.name)
+	var game_menu: GameMenu = MainGame.spawn_game_menu("Inventory", item_names)
+	if not prompt.is_empty():
+		game_menu.with_prompt(prompt)
+	var item_index: int = await game_menu.option_selected
+	if item_index < 0 or item_index >= inventory.items.size():
+		return null
+	return inventory.items[item_index]

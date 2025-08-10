@@ -85,24 +85,29 @@ func _tunnel_between(start: Vector2i, end: Vector2i) -> void:
 		_tunnel_horizontal(end.y, start.x, end.x)
 
 
-func _place_entities(room: Rect2i) -> void:
-	var num_monsters: int = _rng.randi_range(0, _settings.max_monsters_per_room)
-	
-	for _i in num_monsters:
+func _place_entities_weighted(room: Rect2i, amount: int, weights: Dictionary[String, float]) -> void:
+	for _i in amount:
 		var x: int = _rng.randi_range(room.position.x + 1, room.end.x - 1)
 		var y: int = _rng.randi_range(room.position.y + 1, room.end.y - 1)
 		var new_entity_position := Vector2i(x, y)
 		
-		var can_place: bool = _map_data.entities.all(func(e: Entity) -> bool:
-			var position_component: PositionComponent = e.get_component(Component.Type.Position)
-			if not position_component:
-				return true
-			return position_component.position != new_entity_position
-		)
-		if can_place:
-			var new_entity: Entity
-			if _rng.randf() < 0.8:
-				new_entity = RESOURCE_COLLECTION.entities["orc"]
-			else:
-				new_entity = RESOURCE_COLLECTION.entities["troll"]
-			_map_data.spawn_entity_at(new_entity.reify(), new_entity_position)
+		var can_place: bool = _map_data.get_entities_at_position(new_entity_position).is_empty()
+		if not can_place:
+			continue
+		
+		var entity_key: String = weights.keys()[_rng.rand_weighted(weights.values())]
+		var entity = RESOURCE_COLLECTION.entities[entity_key].reify()
+		_map_data.spawn_entity_at(entity, new_entity_position)
+
+
+func _place_entities(room: Rect2i) -> void:
+	var num_monsters: int = _rng.randi_range(0, _settings.max_monsters_per_room)
+	_place_entities_weighted(room, num_monsters, {
+		"orc": 0.8,
+		"troll": 0.2
+	})
+	
+	var num_items: int = _rng.randi_range(0, _settings.max_items_per_room)
+	_place_entities_weighted(room, num_items, {
+		"healing_potion": 1.0
+	})

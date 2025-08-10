@@ -9,9 +9,12 @@ enum Type {
 	Durability,
 	Fighter,
 	FOV,
+	Inventory,
+	Item,
 	MovementBlocker,
 	Player,
 	Position,
+	Use,
 }
 
 var _parent_entity: Entity:

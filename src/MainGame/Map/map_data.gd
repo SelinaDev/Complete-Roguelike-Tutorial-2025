@@ -24,7 +24,7 @@ func spawn_entity_at(entity: Entity, position: Vector2i) -> void:
 func remove_entity(entity: Entity) -> void:
 	entities.erase(entity)
 	entity.map_data = null
-	entity.remove_component(Component.Type.Position)
+	entity.process_message(Message.new("exit_map"))
 
 
 func draw_entities() -> void:

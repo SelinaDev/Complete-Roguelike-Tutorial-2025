@@ -45,6 +45,15 @@ func process_message_precalculate(message: Message) -> void:
 
 func process_message_execute(message: Message) -> void:
 	match message.type:
+		"heal":
+			var actual_amount := heal(message.get_calculation("amount").get_result())
+			var is_player := _parent_entity.has_component(Component.Type.Player)
+			if actual_amount > 0:
+				Log.send_log(
+					"%s was healed for %d health" % [_parent_entity.get_entity_name().capitalize(), actual_amount],
+					Log.COLOR_POSITIVE if is_player else Log.COLOR_NEUTRAL
+				)
+			message.data["actual_amount"] = actual_amount
 		"take_damage":
 			var actual_amount := take_damage(message.get_calculation("damage").get_result())
 			var damage_source: Entity = message.data.get("source")
@@ -94,6 +103,13 @@ func process_message_execute(message: Message) -> void:
 			_parent_entity.name = "Remains of %s" % _parent_entity.name
 			_parent_entity.remove_component(type)
 			_parent_entity.process_message(Message.new("died").with_data({"source": _last_source_of_damage}))
+
+
+func heal(amount: int) -> int:
+	amount = maxi(amount, 0)
+	var old_hp := hp
+	hp += amount
+	return hp - old_hp
 
 
 func take_damage(amount: int) -> int:

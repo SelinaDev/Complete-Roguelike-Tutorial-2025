@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_r8xfv"]
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_c2foe"]
-[ext_resource type="Resource" uid="uid://bdydjpc2ycp73" path="res://resources/entities/base_enemy.tres" id="2_qfcpp"]
+[ext_resource type="Resource" uid="uid://bdydjpc2ycp73" path="res://resources/base_entities/base_enemy.tres" id="2_qfcpp"]
 [ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="3_ehoqn"]
 [ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="4_0x1og"]
 
