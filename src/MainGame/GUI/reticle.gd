@@ -10,6 +10,7 @@ var _camera_state: CameraState
 var _map_data: MapData
 var _info_callback: Callable = func() -> void: pass
 var _info_container: InfoContainer
+var _radius: int
 var _grid_position: Vector2i:
 	set(value):
 		_grid_position = value
@@ -34,11 +35,12 @@ func activate(config: ReticleConfig) -> void:
 	if _info_container:
 		SignalBus.spawn_info_container.emit(_info_container)
 	
+	_radius = config.radius
 	_grid_position = config.initial_position
 	_camera_state.grid_position = _grid_position
 
 
-func deactivate() -> void:
+func deactivate(get_targets: bool) -> void:
 	hide()
 	clear()
 	InputStack.pop_stack()
@@ -47,12 +49,23 @@ func deactivate() -> void:
 	if _info_container:
 		_info_container.close()
 		_info_container = null
+	var targets: Array[Entity] = []
+	if get_targets:
+		targets = _map_data.entities.filter(
+			func(e: Entity) -> bool:
+				return (e.get_component(Component.Type.Position) as PositionComponent).distance_to(_grid_position) <= _radius
+		)
+	SignalBus.reticle_targets_selected.emit(targets)
 
 
 func _update() -> void:
 	clear()
 	_camera_state.grid_position = _grid_position
-	_set_tiles([_grid_position])
+	var tiles: Array[Vector2i] = []
+	for x: int in range(_grid_position.x - _radius, _grid_position.x + _radius + 1):
+		for y: int in range(_grid_position.y - _radius, _grid_position.y + _radius + 1):
+			tiles.append(Vector2i(x, y))
+	_set_tiles(tiles)
 	_info_callback.call()
 
 
@@ -93,4 +106,6 @@ func on_event(event: InputEvent) -> void:
 		_camera_state.zoom -= 1
 	
 	elif event.is_action_pressed("ui_cancel"):
-		deactivate()
+		deactivate(false)
+	elif event.is_action_pressed("ui_accept"):
+		deactivate(true)

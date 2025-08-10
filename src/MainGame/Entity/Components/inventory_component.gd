@@ -30,7 +30,7 @@ func process_message_execute(message: Message) -> void:
 			items.append(item)
 			Log.send_log(
 				"%s %s %s" % [
-					_parent_entity.get_entity_name(),
+					_parent_entity.get_entity_name().capitalize(),
 					verb_past_tense,
 					item.get_entity_name()
 				]

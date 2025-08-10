@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="ResourceCollection" load_steps=10 format=3 uid="uid://dhuel5llscocm"]
+[gd_resource type="Resource" script_class="ResourceCollection" load_steps=13 format=3 uid="uid://dhuel5llscocm"]
 
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="1_0bm4k"]
-[ext_resource type="Resource" uid="uid://corohn4y8go5s" path="res://resources/entities/healing_potion.tres" id="2_0bm4k"]
+[ext_resource type="Resource" uid="uid://dptpv8majsfct" path="res://resources/entities/healing_potion.tres" id="2_0bm4k"]
+[ext_resource type="Resource" uid="uid://1b08bmy7q326" path="res://resources/entities/confusion_scroll.tres" id="2_bae76"]
+[ext_resource type="Resource" uid="uid://cgwosv3wvbrs" path="res://resources/entities/fireball_scroll.tres" id="2_ndubb"]
+[ext_resource type="Resource" uid="uid://q5omnurnh518" path="res://resources/entities/lightning_scroll.tres" id="3_86e2q"]
 [ext_resource type="Resource" uid="uid://dj0vl7850kr1v" path="res://resources/entities/orc.tres" id="3_ndubb"]
 [ext_resource type="Resource" uid="uid://t6mjo4m3b26f" path="res://resources/entities/player.tres" id="4_bae76"]
 [ext_resource type="Resource" uid="uid://xrxa2m7y5ren" path="res://resources/entities/troll.tres" id="5_360ra"]
@@ -13,7 +16,10 @@
 [resource]
 script = ExtResource("6_tbaj6")
 entities = Dictionary[String, ExtResource("1_0bm4k")]({
+"confusion_scroll": ExtResource("2_bae76"),
+"fireball_scroll": ExtResource("2_ndubb"),
 "healing_potion": ExtResource("2_0bm4k"),
+"lightning_scroll": ExtResource("3_86e2q"),
 "orc": ExtResource("3_ndubb"),
 "player": ExtResource("4_bae76"),
 "troll": ExtResource("5_360ra")

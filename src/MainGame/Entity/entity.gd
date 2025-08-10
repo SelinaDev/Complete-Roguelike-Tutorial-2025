@@ -78,6 +78,12 @@ func process_message(message: Message) -> void:
 		_message_queue.pop_front()
 
 
+func add_status_effect(effect: StatusEffect) -> void:
+	if not has_component(Component.Type.StatusEffects):
+		enter_component(StatusEffectsComponent.new())
+	process_message(Message.new("add_status_effect").with_data({"effect": effect}))
+
+
 func get_entity_name(indefinite: bool = false) -> String:
 	if is_proper_name:
 		return name

@@ -109,5 +109,8 @@ func _place_entities(room: Rect2i) -> void:
 	
 	var num_items: int = _rng.randi_range(0, _settings.max_items_per_room)
 	_place_entities_weighted(room, num_items, {
-		"healing_potion": 1.0
+		"healing_potion": 0.7,
+		"lightning_scroll": 0.1,
+		"fireball_scroll": 0.1,
+		"confusion_scroll": 0.1,
 	})
