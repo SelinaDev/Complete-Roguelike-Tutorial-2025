@@ -2,77 +2,77 @@
 
 [ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_udmkr"]
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_10qb1"]
-[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="2_rpol6"]
-[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="3_w87t1"]
-[ext_resource type="Script" uid="uid://qqxap082sv7r" path="res://src/MainGame/Entity/Components/Actor/player_actor_component.gd" id="4_ewc45"]
-[ext_resource type="Script" uid="uid://3tjf7f4d52to" path="res://src/MainGame/Entity/Components/player_component.gd" id="5_ph7id"]
-[ext_resource type="Script" uid="uid://dh7sa5gcxc5ax" path="res://src/MainGame/Entity/Components/camera_component.gd" id="6_ph7id"]
-[ext_resource type="Script" uid="uid://t1hhqdy4fnih" path="res://src/MainGame/Entity/Components/fov_component.gd" id="7_nbuq5"]
-[ext_resource type="Texture2D" uid="uid://cmqb5jnpl7lkt" path="res://resources/default_death_texture.tres" id="8_ewad8"]
-[ext_resource type="Script" uid="uid://b6mnki0ftt2gl" path="res://src/MainGame/Entity/Components/durability_component.gd" id="8_l84a4"]
-[ext_resource type="Script" uid="uid://bxu3263kr3sp0" path="res://src/MainGame/Entity/Components/fighter_component.gd" id="9_ksu5n"]
-[ext_resource type="Script" uid="uid://dyweau1wmjl33" path="res://src/MainGame/Entity/Components/movement_blocker_component.gd" id="10_ksu5n"]
-[ext_resource type="Script" uid="uid://bsddkyxstrkd" path="res://src/MainGame/Entity/Components/inventory_component.gd" id="13_b28q8"]
+[ext_resource type="Script" uid="uid://qqxap082sv7r" path="res://src/MainGame/Entity/Components/Actor/player_actor_component.gd" id="2_ewad8"]
+[ext_resource type="Script" uid="uid://dh7sa5gcxc5ax" path="res://src/MainGame/Entity/Components/camera_component.gd" id="3_b28q8"]
+[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="4_gid4h"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="5_huwty"]
+[ext_resource type="Texture2D" uid="uid://cmqb5jnpl7lkt" path="res://resources/default_death_texture.tres" id="6_s5yj5"]
+[ext_resource type="Script" uid="uid://b6mnki0ftt2gl" path="res://src/MainGame/Entity/Components/durability_component.gd" id="7_yx42e"]
+[ext_resource type="Script" uid="uid://bxu3263kr3sp0" path="res://src/MainGame/Entity/Components/fighter_component.gd" id="8_4gxn2"]
+[ext_resource type="Script" uid="uid://t1hhqdy4fnih" path="res://src/MainGame/Entity/Components/fov_component.gd" id="9_mu0au"]
+[ext_resource type="Script" uid="uid://bsddkyxstrkd" path="res://src/MainGame/Entity/Components/inventory_component.gd" id="11_4wx6c"]
+[ext_resource type="Script" uid="uid://3tjf7f4d52to" path="res://src/MainGame/Entity/Components/player_component.gd" id="12_4n3li"]
+[ext_resource type="Script" uid="uid://dyweau1wmjl33" path="res://src/MainGame/Entity/Components/movement_blocker_component.gd" id="13_b28q8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ewc45"]
-atlas = ExtResource("3_w87t1")
+[sub_resource type="Resource" id="Resource_6rjwl"]
+script = ExtResource("2_ewad8")
+metadata/_custom_type_script = "uid://qqxap082sv7r"
+
+[sub_resource type="Resource" id="Resource_vmkuf"]
+script = ExtResource("3_b28q8")
+metadata/_custom_type_script = "uid://dh7sa5gcxc5ax"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfrqm"]
+atlas = ExtResource("5_huwty")
 region = Rect2(432, 0, 16, 16)
 
-[sub_resource type="Resource" id="Resource_ph7id"]
-script = ExtResource("2_rpol6")
-texture = SubResource("AtlasTexture_ewc45")
+[sub_resource type="Resource" id="Resource_nlo4h"]
+script = ExtResource("4_gid4h")
+texture = SubResource("AtlasTexture_kfrqm")
 render_order = 3
 color = Color(1, 1, 1, 1)
 visible = true
 metadata/_custom_type_script = "uid://baots4c6rxh58"
 
-[sub_resource type="Resource" id="Resource_nbuq5"]
-script = ExtResource("4_ewc45")
-metadata/_custom_type_script = "uid://qqxap082sv7r"
-
-[sub_resource type="Resource" id="Resource_7s8mx"]
-script = ExtResource("5_ph7id")
-metadata/_custom_type_script = "uid://3tjf7f4d52to"
-
-[sub_resource type="Resource" id="Resource_l84a4"]
-script = ExtResource("6_ph7id")
-metadata/_custom_type_script = "uid://dh7sa5gcxc5ax"
-
-[sub_resource type="Resource" id="Resource_ksu5n"]
-script = ExtResource("7_nbuq5")
-radius = 10
-metadata/_custom_type_script = "uid://t1hhqdy4fnih"
-
-[sub_resource type="Resource" id="Resource_ewad8"]
-script = ExtResource("8_l84a4")
+[sub_resource type="Resource" id="Resource_y3aye"]
+script = ExtResource("7_yx42e")
 max_hp = 30
-hp = 0
-defense = 2
-death_texture = ExtResource("8_ewad8")
+hp = 1
+defense = 1
+death_texture = ExtResource("6_s5yj5")
 death_color = Color(0.545098, 0, 0, 1)
 death_render_order = 1
 death_removes_movement_blocker = true
 metadata/_custom_type_script = "uid://b6mnki0ftt2gl"
 
-[sub_resource type="Resource" id="Resource_b28q8"]
-script = ExtResource("9_ksu5n")
-power = 5
+[sub_resource type="Resource" id="Resource_y571u"]
+script = ExtResource("8_4gxn2")
+power = 3
 metadata/_custom_type_script = "uid://bxu3263kr3sp0"
 
-[sub_resource type="Resource" id="Resource_gid4h"]
-script = ExtResource("10_ksu5n")
-metadata/_custom_type_script = "uid://dyweau1wmjl33"
+[sub_resource type="Resource" id="Resource_5t25d"]
+script = ExtResource("9_mu0au")
+radius = 10
+metadata/_custom_type_script = "uid://t1hhqdy4fnih"
 
-[sub_resource type="Resource" id="Resource_huwty"]
-script = ExtResource("13_b28q8")
+[sub_resource type="Resource" id="Resource_a2u7j"]
+script = ExtResource("11_4wx6c")
 capacity = 24
 items = Array[ExtResource("2_10qb1")]([])
 metadata/_custom_type_script = "uid://bsddkyxstrkd"
+
+[sub_resource type="Resource" id="Resource_prp2b"]
+script = ExtResource("12_4n3li")
+metadata/_custom_type_script = "uid://3tjf7f4d52to"
+
+[sub_resource type="Resource" id="Resource_gid4h"]
+script = ExtResource("13_b28q8")
+metadata/_custom_type_script = "uid://dyweau1wmjl33"
 
 [resource]
 script = ExtResource("2_10qb1")
 name = "Player"
 is_proper_name = false
-initial_components = Array[ExtResource("1_udmkr")]([SubResource("Resource_ph7id"), SubResource("Resource_nbuq5"), SubResource("Resource_7s8mx"), SubResource("Resource_l84a4"), SubResource("Resource_ksu5n"), SubResource("Resource_ewad8"), SubResource("Resource_b28q8"), SubResource("Resource_gid4h"), SubResource("Resource_huwty")])
+initial_components = Array[ExtResource("1_udmkr")]([SubResource("Resource_6rjwl"), SubResource("Resource_vmkuf"), SubResource("Resource_nlo4h"), SubResource("Resource_y3aye"), SubResource("Resource_y571u"), SubResource("Resource_5t25d"), SubResource("Resource_a2u7j"), SubResource("Resource_prp2b"), SubResource("Resource_gid4h")])
 _components = Dictionary[int, ExtResource("1_udmkr")]({})
 metadata/_custom_type_script = "uid://c4d0asmlvnv50"

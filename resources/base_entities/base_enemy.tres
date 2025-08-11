@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://b6mnki0ftt2gl" path="res://src/MainGame/Entity/Components/durability_component.gd" id="5_gic80"]
 [ext_resource type="Script" uid="uid://dvq4sb61l1rmo" path="res://src/MainGame/Entity/Components/Actor/AiComponents/melee_ai_component.gd" id="5_swx5b"]
 [ext_resource type="Script" uid="uid://bxu3263kr3sp0" path="res://src/MainGame/Entity/Components/fighter_component.gd" id="6_swx5b"]
-[ext_resource type="Texture2D" uid="uid://cmqb5jnpl7lkt" path="res://resources/default_death_texture.tres" id="7_swx5b"]
+[ext_resource type="Texture2D" uid="uid://cmqb5jnpl7lkt" path="res://resources/default_death_texture.tres" id="7_84o6h"]
 
 [sub_resource type="Resource" id="Resource_kim3o"]
 script = ExtResource("2_qis55")
@@ -35,12 +35,12 @@ metadata/_custom_type_script = "uid://br688f36nlduj"
 [sub_resource type="Resource" id="Resource_30wdv"]
 script = ExtResource("5_gic80")
 max_hp = 10
-hp = 1
-defense = 0
-death_texture = ExtResource("7_swx5b")
+hp = null
+defense = null
+death_texture = ExtResource("7_84o6h")
 death_color = Color(0.545098, 0, 0, 1)
-death_render_order = 1
-death_removes_movement_blocker = true
+death_render_order = null
+death_removes_movement_blocker = null
 metadata/_custom_type_script = "uid://b6mnki0ftt2gl"
 
 [sub_resource type="Resource" id="Resource_pgl6n"]

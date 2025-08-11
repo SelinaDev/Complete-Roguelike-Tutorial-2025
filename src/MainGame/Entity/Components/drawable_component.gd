@@ -47,13 +47,23 @@ func process_message_execute(message: Message) -> void:
 			if message.data.has("position"):
 				var position: Vector2i = message.data["position"]
 				_sprite.position = _parent_entity.map_data.grid_to_world(position)
-				_sprite.visible = _parent_entity.map_data.is_in_fov(position)
+				var is_in_view: bool = _parent_entity.map_data.is_in_fov(position)
+				if message.data.has("remember_color"):
+					_sprite.visible = true
+					_sprite.modulate = color if is_in_view else message.data["remember_color"]
+				else:
+					_sprite.visible = is_in_view
 			else:
 				_sprite.queue_free()
 		"fov_update":
 			var fov: Dictionary[Vector2i, bool] = message.data.get("fov", {})
 			var position: Vector2i = message.data.get("position", Vector2i(-1, -1))
-			_sprite.visible = fov.get(position, false)
+			var is_in_view: bool = fov.get(position, false)
+			if message.data.has("remember_color"):
+				_sprite.visible = true
+				_sprite.modulate = color if is_in_view else message.data["remember_color"]
+			else:
+				_sprite.visible = is_in_view
 		"visual_update":
 			if message.data.has("texture"):
 				texture = message.data["texture"]

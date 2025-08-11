@@ -1,17 +1,23 @@
-[gd_resource type="Resource" script_class="Entity" load_steps=5 format=3 uid="uid://ucbjo3vgbl24"]
+[gd_resource type="Resource" script_class="Entity" load_steps=7 format=3 uid="uid://ucbjo3vgbl24"]
 
 [ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_itryx"]
 [ext_resource type="Script" uid="uid://bsvae5egtaf3g" path="res://src/MainGame/Entity/Components/item_component.gd" id="2_2fike"]
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_ij0ki"]
+[ext_resource type="Script" uid="uid://v01jgtc201sq" path="res://src/MainGame/Entity/Components/rememberable_component.gd" id="3_evbp2"]
 
-[sub_resource type="Resource" id="Resource_evbp2"]
+[sub_resource type="Resource" id="Resource_5cg25"]
 script = ExtResource("2_2fike")
 metadata/_custom_type_script = "uid://bsvae5egtaf3g"
+
+[sub_resource type="Resource" id="Resource_1q7hy"]
+script = ExtResource("3_evbp2")
+remember_color = Color(0.745098, 0.745098, 0.745098, 1)
+metadata/_custom_type_script = "uid://v01jgtc201sq"
 
 [resource]
 script = ExtResource("2_ij0ki")
 name = ""
 is_proper_name = false
-initial_components = Array[ExtResource("1_itryx")]([SubResource("Resource_evbp2")])
+initial_components = Array[ExtResource("1_itryx")]([SubResource("Resource_5cg25"), SubResource("Resource_1q7hy")])
 _components = Dictionary[int, ExtResource("1_itryx")]({})
 metadata/_custom_type_script = "uid://c4d0asmlvnv50"

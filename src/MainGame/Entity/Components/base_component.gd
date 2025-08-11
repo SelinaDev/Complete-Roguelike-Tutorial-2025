@@ -14,6 +14,7 @@ enum Type {
 	MovementBlocker,
 	Player,
 	Position,
+	Rememberable,
 	Use,
 }
 

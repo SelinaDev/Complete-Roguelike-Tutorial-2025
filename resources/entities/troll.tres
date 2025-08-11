@@ -18,7 +18,7 @@ script = ExtResource("3_0vqso")
 texture = SubResource("AtlasTexture_y3yb2")
 render_order = 3
 color = Color(0, 0.501961, 0, 1)
-visible = true
+visible = null
 metadata/_custom_type_script = "uid://baots4c6rxh58"
 
 [sub_resource type="Resource" id="Resource_ihfl1"]
@@ -28,8 +28,8 @@ hp = 0
 defense = 1
 death_texture = ExtResource("5_y3yb2")
 death_color = Color(0.545098, 0, 0, 1)
-death_render_order = 1
-death_removes_movement_blocker = true
+death_render_order = null
+death_removes_movement_blocker = null
 metadata/_custom_type_script = "uid://b6mnki0ftt2gl"
 
 [sub_resource type="Resource" id="Resource_irq1h"]

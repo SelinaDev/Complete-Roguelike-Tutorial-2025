@@ -1,41 +1,41 @@
-[gd_resource type="Resource" script_class="Entity" load_steps=15 format=3 uid="uid://dptpv8majsfct"]
+[gd_resource type="Resource" script_class="Entity" load_steps=15 format=3 uid="uid://corohn4y8go5s"]
 
 [ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_1vfr4"]
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_i42o4"]
 [ext_resource type="Resource" uid="uid://ucbjo3vgbl24" path="res://resources/base_entities/base_item.tres" id="2_uyj11"]
-[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="3_2n5pp"]
-[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="4_xkq00"]
-[ext_resource type="Script" uid="uid://p2ai3kt0dnng" path="res://src/MainGame/Entity/Components/UseComponent/UseEffects/use_effect.gd" id="5_ofiaj"]
-[ext_resource type="Script" uid="uid://dg6r58qmo5cew" path="res://src/MainGame/Entity/Components/UseComponent/UseEffects/heal_use_effect.gd" id="6_gv63q"]
-[ext_resource type="Script" uid="uid://cxkmnbpewqlaw" path="res://src/MainGame/Entity/Components/UseComponent/consumable_component.gd" id="7_cdq7i"]
-[ext_resource type="Script" uid="uid://d3f1rlool6nuv" path="res://src/MainGame/Entity/Components/UseComponent/UseTargets/use_target_self.gd" id="8_l6v47"]
+[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="3_ofiaj"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="4_gv63q"]
+[ext_resource type="Script" uid="uid://p2ai3kt0dnng" path="res://src/MainGame/Entity/Components/UseComponent/UseEffects/use_effect.gd" id="5_cdq7i"]
+[ext_resource type="Script" uid="uid://dg6r58qmo5cew" path="res://src/MainGame/Entity/Components/UseComponent/UseEffects/heal_use_effect.gd" id="6_l6v47"]
+[ext_resource type="Script" uid="uid://cxkmnbpewqlaw" path="res://src/MainGame/Entity/Components/UseComponent/consumable_component.gd" id="7_wtt45"]
+[ext_resource type="Script" uid="uid://d3f1rlool6nuv" path="res://src/MainGame/Entity/Components/UseComponent/UseTargets/use_target_self.gd" id="8_pwqeg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2hqxe"]
-atlas = ExtResource("4_xkq00")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxjq7"]
+atlas = ExtResource("4_gv63q")
 region = Rect2(512, 208, 16, 16)
 
-[sub_resource type="Resource" id="Resource_ofiaj"]
-script = ExtResource("3_2n5pp")
-texture = SubResource("AtlasTexture_2hqxe")
+[sub_resource type="Resource" id="Resource_jkbcf"]
+script = ExtResource("3_ofiaj")
+texture = SubResource("AtlasTexture_nxjq7")
 render_order = 2
 color = Color(1, 0, 0, 1)
 visible = true
 metadata/_custom_type_script = "uid://baots4c6rxh58"
 
-[sub_resource type="Resource" id="Resource_wtt45"]
-script = ExtResource("6_gv63q")
-amount = 5
+[sub_resource type="Resource" id="Resource_xnpum"]
+script = ExtResource("6_l6v47")
+amount = 10
 metadata/_custom_type_script = "uid://dg6r58qmo5cew"
 
-[sub_resource type="Resource" id="Resource_pwqeg"]
-script = ExtResource("8_l6v47")
+[sub_resource type="Resource" id="Resource_3abbk"]
+script = ExtResource("8_pwqeg")
 metadata/_custom_type_script = "uid://d3f1rlool6nuv"
 
-[sub_resource type="Resource" id="Resource_nxjq7"]
-script = ExtResource("7_cdq7i")
+[sub_resource type="Resource" id="Resource_useu2"]
+script = ExtResource("7_wtt45")
 uses = 1
-effects = Array[ExtResource("5_ofiaj")]([SubResource("Resource_wtt45")])
-targeting = SubResource("Resource_pwqeg")
+effects = Array[ExtResource("5_cdq7i")]([SubResource("Resource_xnpum")])
+targeting = SubResource("Resource_3abbk")
 usage_type = 0
 metadata/_custom_type_script = "uid://cxkmnbpewqlaw"
 
@@ -43,7 +43,7 @@ metadata/_custom_type_script = "uid://cxkmnbpewqlaw"
 script = ExtResource("2_i42o4")
 name = "Healing Potion"
 is_proper_name = false
-initial_components = Array[ExtResource("1_1vfr4")]([SubResource("Resource_ofiaj"), SubResource("Resource_nxjq7")])
+initial_components = Array[ExtResource("1_1vfr4")]([SubResource("Resource_jkbcf"), SubResource("Resource_useu2")])
 base_entity = ExtResource("2_uyj11")
 _components = Dictionary[int, ExtResource("1_1vfr4")]({})
 metadata/_custom_type_script = "uid://c4d0asmlvnv50"
