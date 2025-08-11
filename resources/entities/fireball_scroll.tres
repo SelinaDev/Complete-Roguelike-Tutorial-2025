@@ -31,6 +31,7 @@ metadata/_custom_type_script = "uid://b85pd7hw08adl"
 [sub_resource type="Resource" id="Resource_duwsb"]
 script = ExtResource("8_2s1v7")
 radius = 3
+can_target_self = true
 metadata/_custom_type_script = "uid://b60x04awcn2r"
 
 [sub_resource type="Resource" id="Resource_yieva"]
