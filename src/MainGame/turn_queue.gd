@@ -36,6 +36,7 @@ func _process(_delta: float) -> void:
 			return
 		var result := await action.perform()
 		if result or not _queue[_i].has_component(Component.Type.Player):
+			_queue[_i].process_message(Message.new("turn_end"))
 			_i += 1
 
 
