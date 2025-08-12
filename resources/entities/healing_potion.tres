@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://p2ai3kt0dnng" path="res://src/MainGame/Entity/Components/UseComponent/UseEffects/use_effect.gd" id="5_cdq7i"]
 [ext_resource type="Script" uid="uid://dg6r58qmo5cew" path="res://src/MainGame/Entity/Components/UseComponent/UseEffects/heal_use_effect.gd" id="6_l6v47"]
 [ext_resource type="Script" uid="uid://cxkmnbpewqlaw" path="res://src/MainGame/Entity/Components/UseComponent/consumable_component.gd" id="7_wtt45"]
-[ext_resource type="Script" uid="uid://d3f1rlool6nuv" path="res://src/MainGame/Entity/Components/UseComponent/UseTargets/use_target_self.gd" id="8_pwqeg"]
+[ext_resource type="Script" uid="uid://d3tp4sh666fka" path="res://src/MainGame/Entity/Components/UseComponent/UseTargets/use_target_self.gd" id="8_pwqeg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxjq7"]
 atlas = ExtResource("4_gv63q")

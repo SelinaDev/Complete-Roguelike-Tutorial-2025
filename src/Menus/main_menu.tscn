@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd3q7c0addqsg"]
+
+[ext_resource type="Theme" uid="uid://bhx63o0ahxgyw" path="res://resources/theme.tres" id="1_f0d06"]
+[ext_resource type="Script" uid="uid://5raogh5yr0xp" path="res://src/Menus/main_menu.gd" id="2_f0d06"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5iwvv"]
+font_size = 64
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_f0d06")
+script = ExtResource("2_f0d06")
+game_scene = "uid://b2aiis66jnngy"
+metadata/_custom_type_script = "uid://urvsxqmxcpuv"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-627, 25)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "My Awesome Roguelike"
+label_settings = SubResource("LabelSettings_5iwvv")
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LoadGame
+"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_game_button_pressed" binds= [false]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/LoadGameButton" to="." method="_on_game_button_pressed" binds= [true]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

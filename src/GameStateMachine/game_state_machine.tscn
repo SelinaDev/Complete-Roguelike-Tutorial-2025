@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://coa0aiusoejqx"]
+
+[ext_resource type="Script" uid="uid://ce1dwpyh2wwpb" path="res://src/GameStateMachine/game_state_machine.gd" id="1_r03p3"]
+
+[node name="GameStateMachine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r03p3")
+initial_state = "uid://dd3q7c0addqsg"
