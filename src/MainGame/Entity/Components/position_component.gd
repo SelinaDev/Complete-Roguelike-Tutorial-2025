@@ -13,7 +13,7 @@ extends Component
 
 func process_message_precalculate(message: Message) -> void:
 	match message.type:
-		"recalculate_fov", "fov_update", "pathfinder_update":
+		"recalculate_fov", "fov_update", "pathfinder_update", "reactivate":
 			message.data["position"] = position
 		"move":
 			var destination: Vector2i = message.data.get("destination", position)

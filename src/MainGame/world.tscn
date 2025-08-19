@@ -62,6 +62,7 @@ offset = Vector2(8, 8)
 script = ExtResource("3_gs8ee")
 
 [node name="Map" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_amhqt")
 
 [node name="Tiles" type="Node2D" parent="Map"]

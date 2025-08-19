@@ -39,6 +39,7 @@ label_settings = SubResource("LabelSettings_5iwvv")
 layout_mode = 2
 
 [node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 

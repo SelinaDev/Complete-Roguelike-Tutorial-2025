@@ -21,35 +21,37 @@ color = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+[node name="OuterList" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/OuterList"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Menu"
 horizontal_alignment = 1
 
-[node name="ActionPromptLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="ActionPromptLabel" type="Label" parent="CenterContainer/PanelContainer/OuterList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Menu"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/OuterList"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/OuterList"]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="ButtonList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="ButtonList" type="VBoxContainer" parent="CenterContainer/PanelContainer/OuterList/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

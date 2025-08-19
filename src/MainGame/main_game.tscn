@@ -1,11 +1,60 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2aiis66jnngy"]
+[gd_scene load_steps=17 format=3 uid="uid://b2aiis66jnngy"]
 
 [ext_resource type="Theme" uid="uid://bhx63o0ahxgyw" path="res://resources/theme.tres" id="1_srkgh"]
 [ext_resource type="Script" uid="uid://c57u5ykk3ls4" path="res://src/MainGame/main_game.gd" id="2_4i07p"]
-[ext_resource type="PackedScene" uid="uid://c2ykdag72d0du" path="res://src/MainGame/world.tscn" id="2_srkgh"]
+[ext_resource type="Script" uid="uid://c3004drav5kvo" path="res://src/MainGame/world.gd" id="3_opyf6"]
 [ext_resource type="PackedScene" uid="uid://cva3qdduauv60" path="res://src/MainGame/GUI/bar.tscn" id="4_4i07p"]
 [ext_resource type="Script" uid="uid://b1mqyyixxqq5u" path="res://src/MainGame/side_panel.gd" id="4_el57y"]
+[ext_resource type="Script" uid="uid://cufmw36mbc3sf" path="res://src/MainGame/turn_queue.gd" id="4_i4bf6"]
 [ext_resource type="Script" uid="uid://de67evligmt30" path="res://src/MainGame/log.gd" id="5_5oc3u"]
+[ext_resource type="Script" uid="uid://da2jq4b6erks" path="res://src/MainGame/game_camera.gd" id="5_v24hl"]
+[ext_resource type="Script" uid="uid://ni6fdo6qhbpa" path="res://src/MainGame/Map/map.gd" id="6_83puj"]
+[ext_resource type="Texture2D" uid="uid://brwqmr2264wom" path="res://assets/1bitPack/Tilesheet/monochrome-transparent_packed.png" id="7_au8lr"]
+[ext_resource type="Script" uid="uid://c57v558evswfg" path="res://src/MainGame/GUI/reticle.gd" id="8_5u8d4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ggjcr"]
+texture = ExtResource("7_au8lr")
+36:12/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_orurx"]
+sources/0 = SubResource("TileSetAtlasSource_ggjcr")
+
+[sub_resource type="Animation" id="Animation_u5a3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_orurx"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bq5jt"]
+_data = {
+&"RESET": SubResource("Animation_u5a3v"),
+&"pulse": SubResource("Animation_orurx")
+}
 
 [node name="MainGame" type="Control"]
 layout_mode = 3
@@ -16,6 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_srkgh")
 script = ExtResource("2_4i07p")
+main_menu_scene = "uid://dd3q7c0addqsg"
 metadata/_custom_type_script = "uid://urvsxqmxcpuv"
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
@@ -38,8 +88,34 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(898, 648)
 render_target_update_mode = 4
 
-[node name="World" parent="VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_srkgh")]
-unique_name_in_owner = true
+[node name="World" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
+script = ExtResource("3_opyf6")
+
+[node name="TurnQueue" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/World"]
+script = ExtResource("4_i4bf6")
+
+[node name="GameCamera" type="Camera2D" parent="VBoxContainer/SubViewportContainer/SubViewport/World"]
+offset = Vector2(8, 8)
+script = ExtResource("5_v24hl")
+
+[node name="Map" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/World"]
+script = ExtResource("6_83puj")
+
+[node name="Tiles" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/World/Map"]
+
+[node name="Entities" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/World/Map"]
+
+[node name="Reticle" type="TileMapLayer" parent="VBoxContainer/SubViewportContainer/SubViewport/World/Map"]
+z_index = 10
+z_as_relative = false
+tile_set = SubResource("TileSet_orurx")
+script = ExtResource("8_5u8d4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/SubViewportContainer/SubViewport/World/Map/Reticle"]
+libraries = {
+&"": SubResource("AnimationLibrary_bq5jt")
+}
+autoplay = "pulse"
 
 [node name="SidePanel" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
@@ -70,3 +146,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="player_set" from="VBoxContainer/SubViewportContainer/SubViewport/World" to="." method="_on_world_player_set"]
+[connection signal="map_data_set" from="VBoxContainer/SubViewportContainer/SubViewport/World/Map" to="VBoxContainer/SubViewportContainer/SubViewport/World" method="_on_map_map_data_set"]
+[connection signal="map_data_set" from="VBoxContainer/SubViewportContainer/SubViewport/World/Map" to="VBoxContainer/SubViewportContainer/SubViewport/World/TurnQueue" method="start"]

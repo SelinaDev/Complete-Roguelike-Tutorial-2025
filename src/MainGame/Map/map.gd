@@ -12,7 +12,7 @@ var _map_data: MapData:
 	set = set_map_data
 
 
-func _ready() -> void:
+func generate_new_dungeon() -> void:
 	var dungeon_generator := DungeonGenerator.new()
 	_map_data = dungeon_generator.generate_dungeon(PLAYER.reify())
 
@@ -28,3 +28,9 @@ func set_map_data(new_map_data: MapData) -> void:
 	for tile_sprite: Node in _map_data.get_tile_sprites():
 		tiles.add_child(tile_sprite)
 	map_data_set.emit(new_map_data)
+
+
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		SignalBus.save.emit(_map_data, true)

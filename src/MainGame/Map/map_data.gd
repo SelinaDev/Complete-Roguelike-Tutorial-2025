@@ -10,8 +10,8 @@ var _TILE_SIZE: Vector2 = ProjectSettings.get_setting("global/tile_size")
 @export_storage var tiles: Dictionary[Vector2i, Tile]
 @export_storage var size: Vector2i
 @export_storage var player_entity: Entity
+@export_storage var fov: Dictionary[Vector2i, bool] = {}
 
-var _fov: Dictionary[Vector2i, bool] = {}
 var pathfinder: AStarGrid2D
 
 func spawn_entity_at(entity: Entity, position: Vector2i) -> void:
@@ -30,6 +30,13 @@ func remove_entity(entity: Entity) -> void:
 func draw_entities() -> void:
 	for entity: Entity in entities:
 		draw_entity(entity)
+
+
+func reactivate() -> void:
+	for entity: Entity in entities:
+		entity.reactivate(self)
+	setup_pathfinder()
+	
 
 
 func get_tile_sprites() -> Array:
@@ -75,23 +82,24 @@ func get_blocking_entity_at_position(position: Vector2i) -> Entity:
 func set_tile(tile_position: Vector2i, tile_template: TileTemplate) -> Tile:
 	if not Rect2i(Vector2i.ZERO, size).has_point(tile_position):
 		return null
-	var tile := Tile.new(tile_template, tile_position)
+	var tile := Tile.new()
+	tile.setup(tile_template, tile_position)
 	tiles[tile_position] = tile
 	return tile
 
 
 func set_fov(new_fov: Dictionary[Vector2i, bool]) -> void:
-	for position: Vector2i in _fov:
+	for position: Vector2i in fov:
 		tiles.get(position).is_in_view = false
-	_fov = new_fov
-	for position: Vector2i in _fov:
+	fov = new_fov
+	for position: Vector2i in fov:
 		tiles.get(position).is_in_view = true
 	for entity: Entity in entities:
-		entity.process_message(Message.new("fov_update").with_data({"fov": _fov}))
+		entity.process_message(Message.new("fov_update").with_data({"fov": fov}))
 
 
 func is_in_fov(position: Vector2i) -> bool:
-	return _fov.get(position, false)
+	return fov.get(position, false)
 
 
 func setup_pathfinder() -> void:

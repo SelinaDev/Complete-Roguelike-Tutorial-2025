@@ -8,6 +8,10 @@ signal zoom_changed(new_zoom)
 var _stack: Array[CameraState]
 
 
+func reset() -> void:
+	_stack = []
+
+
 func get_new_state() -> CameraState:
 	var new_state: CameraState
 	if _stack.is_empty():

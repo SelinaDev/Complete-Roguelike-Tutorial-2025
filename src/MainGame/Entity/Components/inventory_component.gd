@@ -48,6 +48,9 @@ func process_message_execute(message: Message) -> void:
 			_parent_entity.process_message(Message.new("dropped_item").with_data({"item": item}))
 			Log.send_log("%s dropped %s" % [_parent_entity.get_entity_name().capitalize(), item.get_entity_name()])
 			message.flags["did_drop_item"] = true
+		"reactivate":
+			for item: Entity in items:
+				item.reactivate(null)
 
 
 func get_component_type() -> Type:

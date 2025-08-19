@@ -94,3 +94,10 @@ func get_entity_name(indefinite: bool = false) -> String:
 			return "a " + name
 	else:
 		return "the " + name
+
+
+func reactivate(map_data: MapData) -> void:
+	self.map_data = map_data
+	for component: Component in _components.values():
+		component._parent_entity = self
+	process_message(Message.new("reactivate"))

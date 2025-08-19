@@ -1,14 +1,37 @@
 class_name PlayerActorComponent
 extends ActorComponent
 
+enum PauseOptions {
+	Continue,
+	SaveAndReturn,
+	SaveAndQuit,
+	NUM_PAUSE_OPTIONS
+}
+
+const PauseOptionStrings = {
+	PauseOptions.Continue: "Continue",
+	PauseOptions.SaveAndReturn: "Save and return to Main Menu",
+	PauseOptions.SaveAndQuit: "Save and Quit",
+}
+
 const GAME_MENU = preload("res://src/MainGame/GUI/game_menu.tscn")
 
 func _enter_entity() -> void:
+	_register_input()
+
+
+func _register_input() -> void:
 	InputStack.register_input_callback(_on_event)
 
 
 func before_exit() -> void:
 	InputStack.pop_stack()
+
+
+func process_message_execute(message: Message) -> void:
+	match message.type:
+		"reactivate":
+			_register_input()
 
 
 func _on_event(event: InputEvent) -> void:
@@ -60,6 +83,10 @@ func _on_event(event: InputEvent) -> void:
 	
 	if event.is_action("inventory"):
 		_handle_inventory()
+	
+	
+	if event.is_action("ui_cancel"):
+		_handle_pause_menu()
 
 
 func _handle_inventory() -> void:
@@ -85,3 +112,16 @@ func _get_item(prompt: String = "") -> Entity:
 	if item_index < 0 or item_index >= inventory.items.size():
 		return null
 	return inventory.items[item_index]
+
+
+func _handle_pause_menu() -> void:
+	var pause_options := []
+	for i: int in PauseOptions.NUM_PAUSE_OPTIONS:
+		pause_options.append(PauseOptionStrings[i])
+	var pause_menu: GameMenu = MainGame.spawn_game_menu("Pause", pause_options, true)
+	var pause_index: int = await pause_menu.option_selected
+	match pause_index:
+		PauseOptions.SaveAndReturn:
+			SignalBus.save.emit(_parent_entity.map_data, false)
+		PauseOptions.SaveAndQuit:
+			SignalBus.save.emit(_parent_entity.map_data, true)

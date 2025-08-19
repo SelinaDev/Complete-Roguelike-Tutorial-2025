@@ -5,7 +5,7 @@ extends Resource
 @export_storage var position: Vector2i
 @export_storage var is_explored: bool = false:
 	set(value):
-		if not is_explored:
+		if not is_explored and value:
 			is_explored = value
 			_sprite.show()
 @export_storage var is_in_view: bool = false:
@@ -23,7 +23,7 @@ var _sprite: Sprite2D = null:
 			_sprite.centered = false
 			_sprite.modulate = template.light_color if is_in_view else template.dark_color
 			_sprite.texture = template.texture
-			_sprite.visible = false
+			_sprite.visible = is_explored
 		return _sprite
 
 
@@ -35,7 +35,7 @@ var blocks_sight: bool:
 		return template.blocks_sight
 
 
-func _init(template: TileTemplate, position: Vector2i) -> void:
+func setup(template: TileTemplate, position: Vector2i) -> void:
 	self.template = template
 	self.position = position
 

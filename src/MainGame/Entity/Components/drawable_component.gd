@@ -20,7 +20,10 @@ enum RenderOrder {
 	set(value):
 		color = value
 		_sprite.modulate = color
-@export_storage var visible: bool = true
+@export_storage var visible: bool = true:
+	set(value):
+		visible = value
+		_sprite.visible = value
 
 var _sprite: Sprite2D = null:
 	get:
@@ -43,16 +46,16 @@ func process_message_execute(message: Message) -> void:
 		"exit_map":
 			_sprite.queue_free()
 			_sprite = null
-		"position_update":
+		"position_update", "reactivate":
 			if message.data.has("position"):
 				var position: Vector2i = message.data["position"]
 				_sprite.position = _parent_entity.map_data.grid_to_world(position)
 				var is_in_view: bool = _parent_entity.map_data.is_in_fov(position)
 				if message.data.has("remember_color"):
-					_sprite.visible = true
+					visible = true
 					_sprite.modulate = color if is_in_view else message.data["remember_color"]
 				else:
-					_sprite.visible = is_in_view
+					visible = is_in_view
 			else:
 				_sprite.queue_free()
 		"fov_update":
@@ -60,7 +63,7 @@ func process_message_execute(message: Message) -> void:
 			var position: Vector2i = message.data.get("position", Vector2i(-1, -1))
 			var is_in_view: bool = fov.get(position, false)
 			if message.data.has("remember_color"):
-				_sprite.visible = true
+				visible = true
 				_sprite.modulate = color if is_in_view else message.data["remember_color"]
 			else:
 				_sprite.visible = is_in_view

@@ -3,10 +3,14 @@ extends GameState
 @export_file("*.tscn") var game_scene
 
 @onready var load_game_button: Button = %LoadGameButton
+@onready var new_game_button: Button = %NewGameButton
 
 
 func _ready() -> void:
-	load_game_button.disabled = FileAccess.file_exists(SAVE_PATH)
+	new_game_button.grab_focus()
+	load_game_button.disabled = not FileAccess.file_exists(SAVE_PATH)
+	CameraStateStack.reset()
+	InputStack.reset()
 
 
 func _on_quit_button_pressed() -> void:

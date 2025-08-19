@@ -23,6 +23,7 @@ SignalBus="*res://src/MainGame/Globals/signal_bus.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/shadowed_variable=0
 
 [global]
