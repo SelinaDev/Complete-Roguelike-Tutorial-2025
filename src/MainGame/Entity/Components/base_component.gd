@@ -15,6 +15,7 @@ enum Type {
 	Player,
 	Position,
 	Rememberable,
+	Stairs,
 	StatusEffects,
 	Use,
 }

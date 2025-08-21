@@ -16,7 +16,8 @@ func _ready() -> void:
 func _on_world_player_set(player_entity: Entity) -> void:
 	var player_durability: DurabilityComponent = player_entity.get_component(Component.Type.Durability)
 	health_bar.set_values(player_durability.hp, player_durability.max_hp)
-	player_durability.hp_changed.connect(health_bar.set_values)
+	if not player_durability.hp_changed.is_connected(health_bar.set_values):
+		player_durability.hp_changed.connect(health_bar.set_values)
 
 
 func _on_save(map_data: MapData, and_quit: bool) -> void:

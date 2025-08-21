@@ -48,5 +48,10 @@ func process_message_precalculate(message: Message) -> void:
 			end_effect(effect_type)
 
 
+func process_message_execute(message: Message) -> void:
+	for effect: StatusEffect in effects.values():
+		effect.process_message_execute(_parent_entity, message)
+
+
 func get_component_type() -> Type:
 	return Type.StatusEffects

@@ -2,6 +2,7 @@ class_name MapData
 extends Resource
 
 signal entity_sprite_spawned(entity_sprite)
+signal new_map_requested(new_map_floor)
 
 const BLOCKING_ENTITY_PATHFIND_WEIGHT = 5
 var _TILE_SIZE: Vector2 = ProjectSettings.get_setting("global/tile_size")
@@ -11,6 +12,7 @@ var _TILE_SIZE: Vector2 = ProjectSettings.get_setting("global/tile_size")
 @export_storage var size: Vector2i
 @export_storage var player_entity: Entity
 @export_storage var fov: Dictionary[Vector2i, bool] = {}
+@export_storage var current_floor: int = 1
 
 var pathfinder: AStarGrid2D
 

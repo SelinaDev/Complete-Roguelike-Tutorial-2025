@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://baots4c6rxh58"
 
 [sub_resource type="Resource" id="Resource_ihfl1"]
 script = ExtResource("5_od04i")
-max_hp = 16
+max_hp = 12
 hp = 0
 defense = 1
 death_texture = ExtResource("5_y3yb2")
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://b6mnki0ftt2gl"
 
 [sub_resource type="Resource" id="Resource_irq1h"]
 script = ExtResource("6_y3yb2")
-power = 4
+power = 3
 metadata/_custom_type_script = "uid://bxu3263kr3sp0"
 
 [resource]

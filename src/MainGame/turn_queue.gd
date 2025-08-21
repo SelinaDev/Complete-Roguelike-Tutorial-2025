@@ -33,9 +33,11 @@ func _process(_delta: float) -> void:
 			continue
 		var action: Action = current_actor.get_action()
 		if not action:
+			assert(_queue[_i].has_component(Component.Type.Player))
 			return
-		var result := await action.perform()
-		if result or not _queue[_i].has_component(Component.Type.Player):
+		var result := action.perform()
+		if result and _queue.size() >= _i or not _queue[_i
+		].has_component(Component.Type.Player):
 			_queue[_i].process_message(Message.new("turn_end"))
 			_i += 1
 

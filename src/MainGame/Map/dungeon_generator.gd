@@ -12,9 +12,10 @@ func _init(settings: DungeonSettings = DungeonSettings.new()) -> void:
 	_settings = settings
 
 
-func generate_dungeon(player: Entity) -> MapData:
+func generate_dungeon(player: Entity, current_floor: int = 1) -> MapData:
 	_rng.randomize()
 	_map_data = MapData.new()
+	_map_data.current_floor = current_floor
 	_map_data.player_entity = player
 	_map_data.size = Vector2i(_settings.map_width, _settings.map_height)
 	for x: int in _settings.map_width:
@@ -44,6 +45,12 @@ func generate_dungeon(player: Entity) -> MapData:
 			_place_entities(new_room)
 		
 		rooms.append(new_room)
+	
+	var staircase_position: Vector2i = rooms.front().get_center()
+	var staircase: Entity = RESOURCE_COLLECTION.entities["stairs"].reify()
+	var stairs_component: StairsComponent = staircase.get_component(Component.Type.Stairs)
+	stairs_component.set_current_floor(current_floor)
+	_map_data.spawn_entity_at(staircase, staircase_position)
 	
 	player.process_message(Message.new("recalculate_fov"))
 	

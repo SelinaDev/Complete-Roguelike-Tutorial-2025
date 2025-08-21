@@ -29,6 +29,7 @@ func before_exit() -> void:
 
 
 func process_message_execute(message: Message) -> void:
+	super.process_message_execute(message)
 	match message.type:
 		"reactivate":
 			_register_input()
@@ -84,6 +85,8 @@ func _on_event(event: InputEvent) -> void:
 	if event.is_action("inventory"):
 		_handle_inventory()
 	
+	if event.is_action("descend"):
+		_queued_action = TakeStairsAction.new(_parent_entity)
 	
 	if event.is_action("ui_cancel"):
 		_handle_pause_menu()

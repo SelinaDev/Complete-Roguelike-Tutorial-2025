@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=11 format=3 uid="uid://dgmofy3i8egns"]
+
+[ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_efr35"]
+[ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_0vxn7"]
+[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="2_2apa0"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="3_gwns8"]
+[ext_resource type="Script" uid="uid://v01jgtc201sq" path="res://src/MainGame/Entity/Components/rememberable_component.gd" id="4_up52o"]
+[ext_resource type="Script" uid="uid://bqqn63l7xx6pa" path="res://src/MainGame/Entity/Components/stairs_component.gd" id="5_ovdg3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bupr"]
+atlas = ExtResource("3_gwns8")
+region = Rect2(48, 96, 16, 16)
+
+[sub_resource type="Resource" id="Resource_if7n5"]
+script = ExtResource("2_2apa0")
+texture = SubResource("AtlasTexture_7bupr")
+render_order = 0
+color = Color(1, 1, 1, 1)
+visible = true
+metadata/_custom_type_script = "uid://baots4c6rxh58"
+
+[sub_resource type="Resource" id="Resource_hf4fr"]
+script = ExtResource("4_up52o")
+remember_color = Color(0.745098, 0.745098, 0.745098, 1)
+seen = false
+metadata/_custom_type_script = "uid://v01jgtc201sq"
+
+[sub_resource type="Resource" id="Resource_ggt5r"]
+script = ExtResource("5_ovdg3")
+descends_by = 1
+target_floor = 0
+metadata/_custom_type_script = "uid://bqqn63l7xx6pa"
+
+[resource]
+script = ExtResource("2_0vxn7")
+name = "Staircase (down)"
+is_proper_name = false
+initial_components = Array[ExtResource("1_efr35")]([SubResource("Resource_if7n5"), SubResource("Resource_hf4fr"), SubResource("Resource_ggt5r")])
+_components = Dictionary[int, ExtResource("1_efr35")]({})
+metadata/_custom_type_script = "uid://c4d0asmlvnv50"

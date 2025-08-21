@@ -12,6 +12,7 @@ func perform() -> bool:
 			"Nothing to pick up at %s's location." % _performing_entity.get_entity_name(),
 			Log.COLOR_IMPOSSIBLE
 		)
+		return false
 	var message := Message.new("take_item").with_data({
 		"item": items.front(),
 		"verb": "pick up",
