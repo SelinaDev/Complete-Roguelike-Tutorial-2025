@@ -103,6 +103,14 @@ func process_message_execute(message: Message) -> void:
 			_parent_entity.name = "Remains of %s" % _parent_entity.name
 			_parent_entity.remove_component(type)
 			_parent_entity.process_message(Message.new("died").with_data({"source": _last_source_of_damage}))
+		"increase_max_hp":
+			var amount: int = message.get_calculation("amount").get_result()
+			max_hp += amount
+		"increase_defense":
+			var amount: int = message.get_calculation("amount").get_result()
+			defense += amount
+		"get_defense":
+			message.get_calculation("defense").terms.append(defense)
 
 
 func heal(amount: int) -> int:

@@ -6,6 +6,9 @@ const GAME_MENU = preload("res://src/MainGame/GUI/game_menu.tscn")
 @export_file("*tscn") var main_menu_scene
 
 @onready var health_bar: Bar = %HealthBar
+@onready var xp_bar: Bar = %XpBar
+@onready var dungeon_floor_label: Label = %DungeonFloorLabel
+@onready var character_level_label: Label = %CharacterLevelLabel
 
 
 func _ready() -> void:
@@ -13,11 +16,20 @@ func _ready() -> void:
 	SignalBus.save.connect(_on_save)
 
 
-func _on_world_player_set(player_entity: Entity) -> void:
+func _on_world_map_data_set(map_data: MapData) -> void:
+	var player_entity: Entity = map_data.player_entity
 	var player_durability: DurabilityComponent = player_entity.get_component(Component.Type.Durability)
 	health_bar.set_values(player_durability.hp, player_durability.max_hp)
 	if not player_durability.hp_changed.is_connected(health_bar.set_values):
 		player_durability.hp_changed.connect(health_bar.set_values)
+	var player_level: LevelComponent = player_entity.get_component(Component.Type.Level)
+	xp_bar.set_values(player_level.current_xp, player_level.experience_to_next_level())
+	if not player_level.xp_changed.is_connected(xp_bar.set_values):
+		player_level.xp_changed.connect(xp_bar.set_values)
+		player_level.level_changed.connect(func(new_level: int) -> void:
+			character_level_label.text = "Level %d" %new_level)
+	dungeon_floor_label.text = "Dungeon Floor %d" % map_data.current_floor
+	character_level_label.text = "Level %d" % player_level.current_level
 
 
 func _on_save(map_data: MapData, and_quit: bool) -> void:

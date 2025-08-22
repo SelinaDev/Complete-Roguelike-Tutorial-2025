@@ -14,7 +14,7 @@ const PauseOptionStrings = {
 	PauseOptions.SaveAndQuit: "Save and Quit",
 }
 
-const GAME_MENU = preload("res://src/MainGame/GUI/game_menu.tscn")
+const CHARACTER_INFO_CONTAINER = preload("res://src/MainGame/GUI/InfoContainers/character_info_container.tscn")
 
 func _enter_entity() -> void:
 	_register_input()
@@ -90,6 +90,11 @@ func _on_event(event: InputEvent) -> void:
 	
 	if event.is_action("ui_cancel"):
 		_handle_pause_menu()
+		
+	if event.is_action("character_info"):
+		var character_info_container: CharacterInfoContainer = CHARACTER_INFO_CONTAINER.instantiate()
+		SignalBus.spawn_info_container.emit(character_info_container)
+		character_info_container.setup(_parent_entity)
 
 
 func _handle_inventory() -> void:

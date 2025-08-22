@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Entity" load_steps=13 format=3 uid="uid://xrxa2m7y5ren"]
+[gd_resource type="Resource" script_class="Entity" load_steps=15 format=3 uid="uid://xrxa2m7y5ren"]
 
 [ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_an02v"]
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_ljqeq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b6mnki0ftt2gl" path="res://src/MainGame/Entity/Components/durability_component.gd" id="5_od04i"]
 [ext_resource type="Texture2D" uid="uid://cmqb5jnpl7lkt" path="res://resources/default_death_texture.tres" id="5_y3yb2"]
 [ext_resource type="Script" uid="uid://bxu3263kr3sp0" path="res://src/MainGame/Entity/Components/fighter_component.gd" id="6_y3yb2"]
+[ext_resource type="Script" uid="uid://cojdbwh6fjx3m" path="res://src/MainGame/Entity/Components/xp_component.gd" id="8_kyjyb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3yb2"]
 atlas = ExtResource("4_od04i")
@@ -28,8 +29,8 @@ hp = 0
 defense = 1
 death_texture = ExtResource("5_y3yb2")
 death_color = Color(0.545098, 0, 0, 1)
-death_render_order = null
-death_removes_movement_blocker = null
+death_render_order = 1
+death_removes_movement_blocker = true
 metadata/_custom_type_script = "uid://b6mnki0ftt2gl"
 
 [sub_resource type="Resource" id="Resource_irq1h"]
@@ -37,11 +38,16 @@ script = ExtResource("6_y3yb2")
 power = 3
 metadata/_custom_type_script = "uid://bxu3263kr3sp0"
 
+[sub_resource type="Resource" id="Resource_fylnx"]
+script = ExtResource("8_kyjyb")
+xp = 100
+metadata/_custom_type_script = "uid://cojdbwh6fjx3m"
+
 [resource]
 script = ExtResource("2_ljqeq")
 name = "Troll"
 is_proper_name = false
-initial_components = Array[ExtResource("1_an02v")]([SubResource("Resource_kyjyb"), SubResource("Resource_ihfl1"), SubResource("Resource_irq1h")])
+initial_components = Array[ExtResource("1_an02v")]([SubResource("Resource_kyjyb"), SubResource("Resource_ihfl1"), SubResource("Resource_irq1h"), SubResource("Resource_fylnx")])
 base_entity = ExtResource("2_tvb75")
 _components = Dictionary[int, ExtResource("1_an02v")]({})
 metadata/_custom_type_script = "uid://c4d0asmlvnv50"
