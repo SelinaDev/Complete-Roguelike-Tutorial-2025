@@ -11,6 +11,7 @@ enum Type {
 	FOV,
 	Inventory,
 	Item,
+	Level,
 	MovementBlocker,
 	Player,
 	Position,
@@ -18,6 +19,7 @@ enum Type {
 	Stairs,
 	StatusEffects,
 	Use,
+	XP,
 }
 
 var _parent_entity: Entity:
