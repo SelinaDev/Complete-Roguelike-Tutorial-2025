@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=13 format=3 uid="uid://5rw7lw4l8hio"]
+
+[ext_resource type="Script" uid="uid://bwdv3pioi58ay" path="res://src/MainGame/Entity/Components/base_component.gd" id="1_bjns3"]
+[ext_resource type="Resource" uid="uid://ucbjo3vgbl24" path="res://resources/base_entities/base_item.tres" id="2_7hnk6"]
+[ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="2_xvded"]
+[ext_resource type="Script" uid="uid://baots4c6rxh58" path="res://src/MainGame/Entity/Components/drawable_component.gd" id="3_av2xb"]
+[ext_resource type="Texture2D" uid="uid://cpfsrucab00uj" path="res://assets/1bitPack/Tilesheet/monochrome_packed.png" id="4_03bip"]
+[ext_resource type="Script" uid="uid://5lohuj57enwf" path="res://src/MainGame/Entity/Components/Equippable/EquippableEffect/equippable_effect.gd" id="5_x16d2"]
+[ext_resource type="Script" uid="uid://dqa61p81dtlyq" path="res://src/MainGame/Entity/Components/Equippable/EquippableEffect/power_equippable_effect.gd" id="6_av2xb"]
+[ext_resource type="Script" uid="uid://cd70fdldnl816" path="res://src/MainGame/Entity/Components/Equippable/equippable_component.gd" id="6_cj872"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emc2a"]
+atlas = ExtResource("4_03bip")
+region = Rect2(512, 128, 16, 16)
+
+[sub_resource type="Resource" id="Resource_5gumj"]
+script = ExtResource("3_av2xb")
+texture = SubResource("AtlasTexture_emc2a")
+render_order = 2
+color = Color(0.601223, 0.601223, 0.601223, 1)
+visible = true
+metadata/_custom_type_script = "uid://baots4c6rxh58"
+
+[sub_resource type="Resource" id="Resource_03bip"]
+script = ExtResource("6_av2xb")
+power_bonus = 4
+metadata/_custom_type_script = "uid://dqa61p81dtlyq"
+
+[sub_resource type="Resource" id="Resource_cmo2m"]
+script = ExtResource("6_cj872")
+effects = Array[ExtResource("5_x16d2")]([SubResource("Resource_03bip")])
+slot = 5
+metadata/_custom_type_script = "uid://cd70fdldnl816"
+
+[resource]
+script = ExtResource("2_xvded")
+name = "Sword"
+is_proper_name = false
+initial_components = Array[ExtResource("1_bjns3")]([SubResource("Resource_5gumj"), SubResource("Resource_cmo2m")])
+base_entity = ExtResource("2_7hnk6")
+_components = Dictionary[int, ExtResource("1_bjns3")]({})
+metadata/_custom_type_script = "uid://c4d0asmlvnv50"
