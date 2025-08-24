@@ -1,37 +1,29 @@
-[gd_resource type="Resource" script_class="ResourceCollection" load_steps=18 format=3 uid="uid://dhuel5llscocm"]
+[gd_resource type="Resource" script_class="ResourceCollection" load_steps=14 format=3 uid="uid://dhuel5llscocm"]
 
 [ext_resource type="Script" uid="uid://c4d0asmlvnv50" path="res://src/MainGame/Entity/entity.gd" id="1_0bm4k"]
 [ext_resource type="Resource" uid="uid://corohn4y8go5s" path="res://resources/entities/healing_potion.tres" id="2_0bm4k"]
 [ext_resource type="Resource" uid="uid://1b08bmy7q326" path="res://resources/entities/confusion_scroll.tres" id="2_bae76"]
-[ext_resource type="Resource" uid="uid://c054rhw13ty1p" path="res://resources/entities/chain_mail.tres" id="2_e0bmq"]
 [ext_resource type="Resource" uid="uid://cgwosv3wvbrs" path="res://resources/entities/fireball_scroll.tres" id="2_ndubb"]
 [ext_resource type="Resource" uid="uid://q5omnurnh518" path="res://resources/entities/lightning_scroll.tres" id="3_86e2q"]
 [ext_resource type="Resource" uid="uid://dj0vl7850kr1v" path="res://resources/entities/orc.tres" id="3_ndubb"]
-[ext_resource type="Resource" uid="uid://71b0beumy6nc" path="res://resources/entities/dagger.tres" id="4_yhf55"]
 [ext_resource type="Script" uid="uid://67tc7f61ubqw" path="res://src/MainGame/resource_collection.gd" id="6_tbaj6"]
 [ext_resource type="Resource" uid="uid://t6mjo4m3b26f" path="res://resources/entities/player.tres" id="7_360ra"]
-[ext_resource type="Resource" uid="uid://c4rxt0rr85wud" path="res://resources/entities/leather_armor.tres" id="7_k1fsk"]
 [ext_resource type="Resource" uid="uid://dgmofy3i8egns" path="res://resources/entities/stairs.tres" id="8_tbaj6"]
 [ext_resource type="Resource" uid="uid://xrxa2m7y5ren" path="res://resources/entities/troll.tres" id="9_mtrrw"]
 [ext_resource type="Script" uid="uid://c2tn85e833n4m" path="res://src/MainGame/Map/tile_template.gd" id="11_warjq"]
 [ext_resource type="Resource" uid="uid://cufilifqykitr" path="res://resources/tiles/floor.tres" id="12_e0bmq"]
-[ext_resource type="Resource" uid="uid://5rw7lw4l8hio" path="res://resources/entities/sword.tres" id="12_rl7wd"]
 [ext_resource type="Resource" uid="uid://tgfnn0dsowxm" path="res://resources/tiles/wall.tres" id="13_yhf55"]
 
 [resource]
 script = ExtResource("6_tbaj6")
 entities = Dictionary[String, ExtResource("1_0bm4k")]({
-"chain_mail": ExtResource("2_e0bmq"),
 "confusion_scroll": ExtResource("2_bae76"),
-"dagger": ExtResource("4_yhf55"),
 "fireball_scroll": ExtResource("2_ndubb"),
 "healing_potion": ExtResource("2_0bm4k"),
-"leather_armor": ExtResource("7_k1fsk"),
 "lightning_scroll": ExtResource("3_86e2q"),
 "orc": ExtResource("3_ndubb"),
 "player": ExtResource("7_360ra"),
 "stairs": ExtResource("8_tbaj6"),
-"sword": ExtResource("12_rl7wd"),
 "troll": ExtResource("9_mtrrw")
 })
 tiles = Dictionary[String, ExtResource("11_warjq")]({
