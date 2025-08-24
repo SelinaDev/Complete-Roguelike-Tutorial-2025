@@ -101,6 +101,13 @@ func _handle_inventory() -> void:
 	var item: Entity = await _get_item("select item to use")
 	if not item:
 		return
+	if item.has_component(Component.Type.Use):
+		_handle_use_item(item)
+	if item.has_component(Component.Type.Equippable):
+		_queued_action = ToggleEquipmentAction.new(_parent_entity, item)
+
+
+func _handle_use_item(item) -> void:
 	var use_target := UsableComponent.get_use_target(item)
 	if not use_target:
 		return
@@ -112,7 +119,10 @@ func _handle_inventory() -> void:
 
 func _get_item(prompt: String = "") -> Entity:
 	var inventory: InventoryComponent = _parent_entity.get_component(Component.Type.Inventory)
-	var item_names: Array = inventory.items.map(func(e: Entity) -> String: return e.name)
+	var equipment: EquipmentComponent = _parent_entity.get_component(Component.Type.Equipment)
+	var item_names: Array = inventory.items.map(
+		func(e: Entity) -> String: return e.name + " (equipped)" if equipment.is_equipped(e) else e.name
+	)
 	var game_menu: GameMenu = MainGame.spawn_game_menu("Inventory", item_names)
 	if not prompt.is_empty():
 		game_menu.with_prompt(prompt)

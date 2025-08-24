@@ -16,7 +16,7 @@ func setup(player: Entity) -> void:
 	
 	var power_message := Message.new("get_power")
 	player.process_message(power_message)
-	var defense_message := Message.new("get_desense")
+	var defense_message := Message.new("get_defense")
 	player.process_message(defense_message)
 	
 	var text := """
