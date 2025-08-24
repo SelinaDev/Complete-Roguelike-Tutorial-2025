@@ -6,6 +6,10 @@ const RESOURCE_COLLECTION = preload("res://resources/ResourceCollection.tres")
 var _settings: DungeonSettings
 var _map_data: MapData
 var _rng := RandomNumberGenerator.new()
+var _max_monsters: int
+var _monster_weights: Dictionary[String, float]
+var _item_weights: Dictionary[String, float]
+var _max_items: int
 
 
 func _init(settings: DungeonSettings = DungeonSettings.new()) -> void:
@@ -18,6 +22,7 @@ func generate_dungeon(player: Entity, current_floor: int = 1) -> MapData:
 	_map_data.current_floor = current_floor
 	_map_data.player_entity = player
 	_map_data.size = Vector2i(_settings.map_width, _settings.map_height)
+	_calculate_weights()
 	for x: int in _settings.map_width:
 		for y: int in _settings.map_height:
 			_map_data.set_tile(Vector2i(x, y), RESOURCE_COLLECTION.tiles["wall"])
@@ -92,6 +97,20 @@ func _tunnel_between(start: Vector2i, end: Vector2i) -> void:
 		_tunnel_horizontal(end.y, start.x, end.x)
 
 
+func _calculate_weights() -> void:
+	var current_floor: int = _map_data.current_floor
+
+	_max_monsters = _settings.get_floor_value(_settings.max_monsters_per_room, current_floor)
+	for monster_key: String in _settings.monster_chances:
+		var monster_weight: float = _settings.get_floor_value(_settings.monster_chances[monster_key], current_floor)
+		_monster_weights[monster_key] = monster_weight
+
+	_max_items = _settings.get_floor_value(_settings.max_items_per_room, current_floor)
+	for item_key: String in _settings.item_chances:
+		var item_weight: float = _settings.get_floor_value(_settings.item_chances[item_key], current_floor)
+		_item_weights[item_key] = item_weight
+
+
 func _place_entities_weighted(room: Rect2i, amount: int, weights: Dictionary[String, float]) -> void:
 	for _i in amount:
 		var x: int = _rng.randi_range(room.position.x + 1, room.end.x - 1)
@@ -108,16 +127,8 @@ func _place_entities_weighted(room: Rect2i, amount: int, weights: Dictionary[Str
 
 
 func _place_entities(room: Rect2i) -> void:
-	var num_monsters: int = _rng.randi_range(0, _settings.max_monsters_per_room)
-	_place_entities_weighted(room, num_monsters, {
-		"orc": 0.8,
-		"troll": 0.2
-	})
+	var num_monsters: int = _rng.randi_range(0, _max_monsters)
+	_place_entities_weighted(room, num_monsters, _monster_weights)
 	
-	var num_items: int = _rng.randi_range(0, _settings.max_items_per_room)
-	_place_entities_weighted(room, num_items, {
-		"healing_potion": 0.7,
-		"lightning_scroll": 0.1,
-		"fireball_scroll": 0.1,
-		"confusion_scroll": 0.1,
-	})
+	var num_items: int = _rng.randi_range(0, _max_items)
+	_place_entities_weighted(room, num_items, _item_weights)

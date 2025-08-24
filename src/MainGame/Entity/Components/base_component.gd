@@ -7,6 +7,8 @@ enum Type {
 	Camera,
 	Drawable,
 	Durability,
+	Equipment,
+	Equippable,
 	Fighter,
 	FOV,
 	Inventory,
