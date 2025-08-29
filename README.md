@@ -32,3 +32,14 @@ This repository is organized with different branches for each part.
 - Part 8: https://github.com/SelinaDev/Complete-Roguelike-Tutorial-2025/tree/part-08
 - Part 9: https://github.com/SelinaDev/Complete-Roguelike-Tutorial-2025/tree/part-09
 - Reddit post accompanying parts 8 and 9: https://www.reddit.com/r/roguelikedev/comments/1mo03rw/comment/n88z2c9/
+
+## Week 6
+
+- Part 10: https://github.com/SelinaDev/Complete-Roguelike-Tutorial-2025/tree/part-10
+- Part 11: https://github.com/SelinaDev/Complete-Roguelike-Tutorial-2025/tree/part-11
+- Reddit post accompanying parts 10 and 11: https://www.reddit.com/r/roguelikedev/comments/1mo03rw/comment/n88z2c9/
+
+## Week 7
+
+- Part 12: https://github.com/SelinaDev/Complete-Roguelike-Tutorial-2025/tree/part-12
+- Part 13: https://github.com/SelinaDev/Complete-Roguelike-Tutorial-2025/tree/part-13
